@@ -1,6 +1,10 @@
 package Morphesuss93.MorpheussTechCore;
 
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.config.Configuration;
 import Morphesuss93.MorpheussTechCore.blocks.BlockHandler;
 import Morphesuss93.MorpheussTechCore.items.ItemsHandler;
@@ -12,6 +16,7 @@ import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 
@@ -24,13 +29,22 @@ public class Core {
 	@SidedProxy(clientSide = "Morphesuss93.MorpheussTechCore.client.ClientProxy",serverSide="Morphesuss93.MorpheussTechCore.CommonProxy")
 	public static CommonProxy proxy;
 	
+	 public static CreativeTabs tabCore= new CreativeTabs("MorpheussTech-Core") {
+			@Override
+			public Item getTabIconItem() {
+				return Items.redstone;
+			}
+			
+	    };
+	
+	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		Configuration config=new Configuration(event.getSuggestedConfigurationFile());
 		config.load();
-		BlockHandler.configureBlock();
-		ItemsHandler.configureItems();
+		BlockHandler.configureBlock(config);
+		ItemsHandler.configureItems(config);
 		config.save();
 	}
 	
@@ -38,7 +52,13 @@ public class Core {
     public void init(FMLInitializationEvent event)
     {
 		proxy.registerRenders();
-        
     }
-
+    
+    @EventHandler
+    public void postInit(FMLPostInitializationEvent event)
+    {
+    	
+    }
+   
+   
 }

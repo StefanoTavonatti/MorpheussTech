@@ -1,0 +1,9 @@
+itemGroup.MorpheussTech-Core=MorpheussTech-Core
+
+tile.Copper Ore.name=Copper Ore
+tile.Tin Ore.name=Tin Ore
+tile.Silver Ore.name=Silver Ore
+tile.Aluminium Ore.name=Aluminium Ore
+
+item.Copper Ingot.name=Copper Ingot
+item.Aluminium Ingot.name=Aluminium Ingot
