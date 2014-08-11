@@ -10,6 +10,8 @@ public class ItemsHandler {
 	
 	public static CopperIngot copperIngot;
 	public static AluminiumIngot aluminiumIngot;
+	public static SilverIngot silverIngot;
+	public static TinIngot tinIngot;
 	
 	public static void configureItems(Configuration config){
 		copperIngot=new CopperIngot();
@@ -19,6 +21,14 @@ public class ItemsHandler {
 		aluminiumIngot=new AluminiumIngot();
 		GameRegistry.registerItem(aluminiumIngot, Reference.MODID+"-"+aluminiumIngot.getUnlocalizedName().substring(5));
 		OreDictionary.registerOre("ingotAluminium", aluminiumIngot);
+		
+		silverIngot=new SilverIngot();
+		GameRegistry.registerItem(silverIngot, Reference.MODID+"-"+silverIngot.getUnlocalizedName().substring(5));
+		OreDictionary.registerOre("ingotSilver", silverIngot);
+		
+		tinIngot=new TinIngot();
+		GameRegistry.registerItem(tinIngot, Reference.MODID+"-"+tinIngot.getUnlocalizedName().substring(5));
+		OreDictionary.registerOre("ingotTin", tinIngot);
 	}
 
 }

@@ -45,6 +45,8 @@ public class Core {
 		config.load();
 		BlockHandler.configureBlock(config);
 		ItemsHandler.configureItems(config);
+		BlockHandler.configureWGen();
+		BlockHandler.configureRecipes();
 		config.save();
 	}
 	
