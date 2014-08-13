@@ -216,6 +216,13 @@ public class TileEntityAlloyFurnace extends TileEntity implements ISidedInventor
 			}else if(this.furnaceItemStacks[2].getItem()==itemstack.getItem()){
 				this.furnaceItemStacks[2].stackSize+=itemstack.stackSize;
 			}
+			
+			--this.furnaceItemStacks[0].stackSize;
+			
+			if(this.furnaceItemStacks[0].stackSize <= 0){
+				this.furnaceItemStacks[0] = null;
+			}
+			
 		}
 	}
 

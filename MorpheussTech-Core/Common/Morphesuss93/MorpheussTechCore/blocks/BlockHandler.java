@@ -45,7 +45,7 @@ public class BlockHandler {
 		
 		
 		AlloyFurnace=new AlloyFurnace(false).setBlockName("AlloyFurnace");
-		AlloyFurnaceActive=new AlloyFurnace(false).setBlockName("AlloyFurnaceActive");
+		AlloyFurnaceActive=new AlloyFurnace(true).setBlockName("AlloyFurnaceActive");
 		GameRegistry.registerBlock(AlloyFurnace, Reference.MODID+"-"+AlloyFurnace.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(AlloyFurnaceActive, Reference.MODID+"-"+AlloyFurnaceActive.getUnlocalizedName().substring(5));
 		
