@@ -39,13 +39,14 @@ public class AlloyFurnace extends BlockContainer{
 	public AlloyFurnace(boolean isActive) {
 		super(Material.rock);
 
+		this.setCreativeTab(Core.tabCore);
 		isBurning2=isActive;
 	}
 
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconregister){
 		this.blockIcon=iconregister.registerIcon(Reference.MODID+":AlloyFurnaceSide");
-		this.front=iconregister.registerIcon(this.isBurning2 ? Reference.MODID+":AlloyFurnaceActive" : Reference.MODID+"AlloyFurnaceInactive");
+		this.front=iconregister.registerIcon(this.isBurning2 ? Reference.MODID+":AlloyFurnaceActive" : Reference.MODID+":AlloyFurnaceInactive");
 		this.top=iconregister.registerIcon(Reference.MODID+":AlloyFurnaceTop");
 	}
 	

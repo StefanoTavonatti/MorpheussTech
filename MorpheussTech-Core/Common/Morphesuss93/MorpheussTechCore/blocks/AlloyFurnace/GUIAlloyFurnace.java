@@ -35,7 +35,7 @@ public class GUIAlloyFurnace extends GuiContainer{
 		int k= (this.width - this.xSize)/2;
 		int l= (this.height - this.ySize)/2;
 		
-		this.drawTexturedModalRect(k, 1, 0, 0, this.xSize, this.ySize);
+		this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
 		int i1;
 		if(this.tileFurnace.isBurning()){
 			i1=this.tileFurnace.getBurnTimeRemaningScaled(12);
