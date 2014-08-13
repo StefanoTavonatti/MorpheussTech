@@ -3,6 +3,7 @@ package Morphesuss93.MorpheussTechCore.items;
 import cpw.mods.fml.common.registry.GameRegistry;
 import Morphesuss93.MorpheussTechCore.Reference;
 import Morphesuss93.MorpheussTechCore.items.ingot.*;
+import net.minecraft.block.Block;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -12,6 +13,7 @@ public class ItemsHandler {
 	public static AluminiumIngot aluminiumIngot;
 	public static SilverIngot silverIngot;
 	public static TinIngot tinIngot;
+	
 	
 	public static void configureItems(Configuration config){
 		copperIngot=new CopperIngot();
@@ -29,6 +31,10 @@ public class ItemsHandler {
 		tinIngot=new TinIngot();
 		GameRegistry.registerItem(tinIngot, Reference.MODID+"-"+tinIngot.getUnlocalizedName().substring(5));
 		OreDictionary.registerOre("ingotTin", tinIngot);
+		
+		
+		
+		
 	}
 
 }

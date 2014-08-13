@@ -7,6 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.config.Configuration;
 import Morphesuss93.MorpheussTechCore.blocks.BlockHandler;
+import Morphesuss93.MorpheussTechCore.handler.MGuiHandler;
 import Morphesuss93.MorpheussTechCore.items.ItemsHandler;
 
 import com.example.examplemod.ExampleMod;
@@ -18,6 +19,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
 
 
 @Mod(modid = Reference.MODID, version = Reference.VERSION)
@@ -47,6 +49,7 @@ public class Core {
 		ItemsHandler.configureItems(config);
 		BlockHandler.configureWGen();
 		BlockHandler.configureRecipes();
+		BlockHandler.configureTile();
 		config.save();
 	}
 	
@@ -54,6 +57,7 @@ public class Core {
     public void init(FMLInitializationEvent event)
     {
 		proxy.registerRenders();
+		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new MGuiHandler());
     }
     
     @EventHandler

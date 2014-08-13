@@ -1,5 +1,6 @@
 package Morphesuss93.MorpheussTechCore.blocks;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.oredict.OreDictionary;
@@ -10,6 +11,7 @@ import Morphesuss93.MorpheussTechCore.blocks.ore.CopperOre;
 import Morphesuss93.MorpheussTechCore.blocks.ore.SilverOre;
 import Morphesuss93.MorpheussTechCore.blocks.ore.TinOre;
 import Morphesuss93.MorpheussTechCore.items.ItemsHandler;
+import Morphesuss93.MorpheussTechCore.blocks.AlloyFurnace.*;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class BlockHandler {
@@ -18,6 +20,8 @@ public class BlockHandler {
 	public static TinOre tinOre;
 	public static SilverOre silverOre;
 	public static AluminiumOre aluminiumOre;
+	public static Block AlloyFurnace;
+	public static Block AlloyFurnaceActive;
 	
 	public static void configureBlock(Configuration config)
 	{
@@ -37,6 +41,14 @@ public class BlockHandler {
 		GameRegistry.registerBlock(aluminiumOre, Reference.MODID+"-"+aluminiumOre.getUnlocalizedName().substring(5));
 		OreDictionary.registerOre("oreAluminium", aluminiumOre);
 		
+		
+		
+		
+		AlloyFurnace=new AlloyFurnace(false).setBlockName("AlloyFurnace");
+		AlloyFurnaceActive=new AlloyFurnace(false).setBlockName("AlloyFurnaceActive");
+		GameRegistry.registerBlock(AlloyFurnace, Reference.MODID+"-"+AlloyFurnace.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(AlloyFurnaceActive, Reference.MODID+"-"+AlloyFurnaceActive.getUnlocalizedName().substring(5));
+		
 	}
 	
 	public static void configureWGen()
@@ -51,6 +63,11 @@ public class BlockHandler {
 		GameRegistry.addSmelting(aluminiumOre, new ItemStack(ItemsHandler.aluminiumIngot), 0.8F);
 		GameRegistry.addSmelting(silverOre, new ItemStack(ItemsHandler.silverIngot), 0.8F);
 		GameRegistry.addSmelting(tinOre, new ItemStack(ItemsHandler.tinIngot), 0.8F);
+	}
+	
+	public static void configureTile()
+	{
+		GameRegistry.registerTileEntity(TileEntityAlloyFurnace.class, Reference.MODID+"TileEntityAlloyFurnace");
 	}
 
 }
