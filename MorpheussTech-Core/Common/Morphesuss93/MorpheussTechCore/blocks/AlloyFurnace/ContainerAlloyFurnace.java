@@ -53,7 +53,7 @@ public class ContainerAlloyFurnace extends Container{
 			}
 			
 			if(this.lastBurnTime!=this.tileFurnace.furnaceBurnTime){
-				craft.sendProgressBarUpdate(this, 1, this.tileFurnace.furnaceCookTime);
+				craft.sendProgressBarUpdate(this, 1, this.tileFurnace.furnaceBurnTime);
 			}
 			
 			if(this.lastItemBurnTime!=this.tileFurnace.currentBurnTime){

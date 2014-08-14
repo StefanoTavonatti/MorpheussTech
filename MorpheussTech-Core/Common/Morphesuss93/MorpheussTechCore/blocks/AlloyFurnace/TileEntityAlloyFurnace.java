@@ -31,7 +31,7 @@ public class TileEntityAlloyFurnace extends TileEntity implements ISidedInventor
 	
 	private ItemStack[] furnaceItemStacks=new ItemStack[3];
 	public int furnaceBurnTime;
-	public int currentBurnTime;
+	public int currentBurnTime;//per quanto brucia il carburante
 	
 	public int furnaceCookTime;
 	
@@ -99,8 +99,8 @@ public class TileEntityAlloyFurnace extends TileEntity implements ISidedInventor
 		
 		this.furnaceBurnTime=tagCompound.getShort("BurnTime");
 		this.furnaceCookTime=tagCompound.getShort("CookTime");
-		this.currentBurnTime=getItemBurnTime(this.furnaceItemStacks[1]);
-		
+		//this.currentBurnTime=getItemBurnTime(this.furnaceItemStacks[1]);
+		this.currentBurnTime=tagCompound.getShort("currentBurnTime");//camb
 		if(tagCompound.hasKey("CustomName",8)){
 			this.furnaceName=tagCompound.getString("CustomName");
 		}
@@ -110,6 +110,7 @@ public class TileEntityAlloyFurnace extends TileEntity implements ISidedInventor
 		super.writeToNBT(tagCompound);
 		tagCompound.setShort("BurnTime",(short)this.furnaceBurnTime);
 		tagCompound.setShort("CookTime",(short)this.furnaceCookTime);
+		tagCompound.setShort("currentBurnTime",(short)this.currentBurnTime);//camb
 		
 		NBTTagList tagList=new NBTTagList();
 		
@@ -141,6 +142,7 @@ public class TileEntityAlloyFurnace extends TileEntity implements ISidedInventor
 		}
 		
 		return this.furnaceBurnTime*par1 /this.currentBurnTime;
+		//return this.furnaceBurnTime*par1/this.furnaceBurnTime;
 	}
 	
 	public boolean isBurning(){

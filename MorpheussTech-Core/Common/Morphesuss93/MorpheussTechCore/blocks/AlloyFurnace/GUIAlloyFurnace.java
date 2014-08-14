@@ -25,6 +25,7 @@ public class GUIAlloyFurnace extends GuiContainer{
 		String string=this.tileFurnace.hasCustomInventoryName() ?this.tileFurnace.getInventoryName(): I18n.format(this.tileFurnace.getInventoryName(),new Object[0] );
 		this.fontRendererObj.drawString(string, this.xSize/2 -this.fontRendererObj.getStringWidth(string), 6, 4210752);
 		this.fontRendererObj.drawString(I18n.format("container.inventory", new Object[0]), 8, this.ySize-94, 4210752);
+		//this.fontRendererObj.drawString("cur="+tileFurnace.currentBurnTime+" furnBurn="+tileFurnace.furnaceBurnTime+" coock="+tileFurnace.furnaceCookTime, this.xSize/2 -this.fontRendererObj.getStringWidth(string), 6, 4210752);
 
 	}
 	
@@ -37,12 +38,13 @@ public class GUIAlloyFurnace extends GuiContainer{
 		
 		this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
 		int i1;
+		
 		if(this.tileFurnace.isBurning()){
 			i1=this.tileFurnace.getBurnTimeRemaningScaled(12);
-			this.drawTexturedModalRect(k+56, l+36+12-i1, 176, 12-i1, 14, i1+2);
+			this.drawTexturedModalRect(k + 56, l + 36 + 12 - i1, 176, 12 - i1, 14, i1 + 2);
 		}
 		
-		i1=this.tileFurnace.getCookProgressScaled(24);
+		i1=this.tileFurnace.getCookProgressScaled(24);//freccia
 		this.drawTexturedModalRect(k+79, l+34, 176, 14, i1+1,16);
 		
 	}
