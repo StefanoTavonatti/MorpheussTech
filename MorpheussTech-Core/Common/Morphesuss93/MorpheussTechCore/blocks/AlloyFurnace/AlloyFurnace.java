@@ -50,7 +50,7 @@ public class AlloyFurnace extends BlockContainer{
 		this.top=iconregister.registerIcon(Reference.MODID+":AlloyFurnaceTop");
 	}
 	
-	public IIcon getIcon(int side,int meta){
+	/*public IIcon getIcon(int side,int meta){
 		
 		if(side==1){
 			return top;
@@ -59,6 +59,11 @@ public class AlloyFurnace extends BlockContainer{
 		}else{
 			return this.blockIcon;
 		}
+	}*/
+	
+	public IIcon getIcon(int side,int meta){
+		
+		return side == 1 ? this.top : ( side ==0? this.top : (side!=meta?this.blockIcon:this.front));
 	}
 	
 	public boolean onBlockActivated(World world,int x,int y,int z,EntityPlayer player,int par6,float par7,float par8,float par9){
@@ -89,19 +94,19 @@ public class AlloyFurnace extends BlockContainer{
 			Block direction3=world.getBlock(x +1, y, z);
 			byte byte0=3;
 			
-			if(direction.func_149730_j() && direction.func_149730_j()){
+			if(direction.func_149730_j() && !direction1.func_149730_j()){
 				byte0=3;
 			}
 			
-			if(direction1.func_149730_j() && direction1.func_149730_j()){
+			if(direction1.func_149730_j() && !direction.func_149730_j()){
 				byte0=2;
 			}
 			
-			if(direction2.func_149730_j() && direction2.func_149730_j()){
+			if(direction2.func_149730_j() && !direction3.func_149730_j()){
 				byte0=5;
 			}
 			
-			if(direction3.func_149730_j() && direction3.func_149730_j()){
+			if(direction3.func_149730_j() && !direction2.func_149730_j()){
 				byte0=4;
 			}
 			

@@ -12,5 +12,6 @@ public class AluminiumIngot extends Item{
 		this.setUnlocalizedName("Aluminium Ingot");
 		this.setTextureName(Reference.MODID+":"+"AluminiumIngot");
 		this.setCreativeTab(Core.tabCore);
+		this.setMaxStackSize(64);
 	}
 }

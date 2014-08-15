@@ -27,17 +27,16 @@ public class AlloyFurnaceRecipes {
 		results=new ArrayList();
 		
 		ArrayList temp=new ArrayList();
+		
+		//////////Bronze/////////////
 		temp.add(new ItemStack(ItemsHandler.tinIngot,1));
 		temp.add(new ItemStack(ItemsHandler.copperIngot,1));
-		
-		addRecipie(temp, ItemsHandler.silverIngot, 4);
-		
-		temp=new ArrayList();
-		temp.add(new ItemStack(ItemsHandler.tinIngot,1));
-		temp.add(new ItemStack(ItemsHandler.tinIngot,1));
+		temp.add(new ItemStack(ItemsHandler.copperIngot,1));
 		temp.add(new ItemStack(ItemsHandler.copperIngot,1));
 		
-		addRecipie(temp, ItemsHandler.aluminiumIngot, 26);
+		addRecipie(temp, ItemsHandler.bronzeIngot, 4);
+		
+		
 	}
 	
 	public void addRecipie(ArrayList recipie, Item result,int num){
@@ -65,8 +64,14 @@ public class AlloyFurnaceRecipes {
 				{
 					ItemStack tempI=(ItemStack)temp.get(j);
 					ItemStack tempI2=(ItemStack)recipie.get(j);
-					String s1=OreDictionary.getOreName(tempI.getItem().getIdFromItem(tempI.getItem()));
-					String s2=OreDictionary.getOreName(tempI2.getItem().getIdFromItem(tempI2.getItem()));
+					
+					int[] id1=OreDictionary.getOreIDs(tempI);
+					int[] id2=OreDictionary.getOreIDs(tempI2);
+					
+					String s1=OreDictionary.getOreName(id1[0]);
+					String s2=OreDictionary.getOreName(id2[0]);
+					
+					
 					if(!s1.equals(s2))
 					{
 						uguali=false;
@@ -82,30 +87,6 @@ public class AlloyFurnaceRecipes {
 	}
 	
 	
-	/*public static final AlloyFurnaceRecipes SMELTING_BASE = new AlloyFurnaceRecipes();
-	private Map smeltingList=new HashMap();
-	private Map experienceList=new HashMap();
-	//private Set recipe=new TreeSet();
 	
-	public AlloyFurnaceRecipes(){
-		Set recipie=new TreeSet();
-		recipie.add(new ItemStack(ItemsHandler.copperIngot,1));
-		recipie.add(new ItemStack (ItemsHandler.tinIngot,1));
-		
-		this.addRecipie(ItemsHandler.silverIngot,recipie,0.5F);
-	}
-	
-	public void addRecipie(Item item, Set recipie,float experience){
-		smeltingList.put(recipie,new ItemStack(item,1));
-		experienceList.put(new ItemStack(item,1), experience);
-	}
-	
-	public ItemStack getSmeltingResult(Set recipie){
-		
-		Iterator iterator=this.smeltingList.entrySet().iterator();
-		
-		ItemStack itemstack=(ItemStack) smeltingList.get(recipie);
-		return itemstack;
-	}*/
 
 }

@@ -4,8 +4,10 @@ tile.Copper Ore.name=Copper Ore
 tile.Tin Ore.name=Tin Ore
 tile.Silver Ore.name=Silver Ore
 tile.Aluminium Ore.name=Aluminium Ore
+tile.AlloyFurnace.name=Alloy Furnace
 
 item.Copper Ingot.name=Copper Ingot
 item.Aluminium Ingot.name=Aluminium Ingot
 item.Silver Ingot.name=Silver Ingot
 item.Tin Ingot.name=Tin Ingot
+item.Bronze Ingot.name=Bronze Ingot

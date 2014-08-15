@@ -1,6 +1,8 @@
 package Morphesuss93.MorpheussTechCore.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.oredict.OreDictionary;
@@ -63,6 +65,10 @@ public class BlockHandler {
 		GameRegistry.addSmelting(aluminiumOre, new ItemStack(ItemsHandler.aluminiumIngot), 0.8F);
 		GameRegistry.addSmelting(silverOre, new ItemStack(ItemsHandler.silverIngot), 0.8F);
 		GameRegistry.addSmelting(tinOre, new ItemStack(ItemsHandler.tinIngot), 0.8F);
+		
+		
+		////crafting////
+		GameRegistry.addShapedRecipe(new ItemStack(AlloyFurnace,1), new Object[]{"BFB","B B","BFB",'B',Items.brick,'F',Blocks.furnace});
 	}
 	
 	public static void configureTile()

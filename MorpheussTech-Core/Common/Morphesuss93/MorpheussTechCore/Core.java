@@ -52,7 +52,6 @@ public class Core {
 		BlockHandler.configureTile();
 		config.save();
 		
-		System.out.println("sono uguali? "+ItemsHandler.copperIngot.equals(ItemsHandler.copperIngot));
 	}
 	
     @EventHandler

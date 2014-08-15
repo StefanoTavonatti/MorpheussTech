@@ -12,6 +12,7 @@ public class TinIngot extends Item{
 		this.setUnlocalizedName("Tin Ingot");
 		this.setTextureName(Reference.MODID+":"+"TinIngot");
 		this.setCreativeTab(Core.tabCore);
+		this.setMaxStackSize(64);
 	}
 
 }

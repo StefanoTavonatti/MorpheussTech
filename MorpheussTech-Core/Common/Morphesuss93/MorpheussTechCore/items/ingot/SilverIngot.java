@@ -12,6 +12,7 @@ public class SilverIngot extends Item{
 		this.setUnlocalizedName("Silver Ingot");
 		this.setTextureName(Reference.MODID+":"+"SilverIngot");
 		this.setCreativeTab(Core.tabCore);
+		this.setMaxStackSize(64);
 	}
 
 }

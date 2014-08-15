@@ -12,6 +12,7 @@ public class CopperIngot extends Item{
 		this.setUnlocalizedName("Copper Ingot");
 		this.setTextureName(Reference.MODID+":"+"CopperIngot");
 		this.setCreativeTab(Core.tabCore);
+		this.setMaxStackSize(64);
 	}
 
 }
