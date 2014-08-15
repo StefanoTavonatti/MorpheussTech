@@ -20,10 +20,18 @@ public class ContainerAlloyFurnace extends Container{
 	
 	public ContainerAlloyFurnace(InventoryPlayer player, TileEntityAlloyFurnace tileEntityFurnace) {
 		this.tileFurnace=tileEntityFurnace;
-		this.addSlotToContainer(new Slot(tileEntityFurnace,0,56,17));//position of slot
-		this.addSlotToContainer(new Slot(tileEntityFurnace,1,56,53));
-		this.addSlotToContainer(new SlotFurnace(player.player,tileEntityFurnace,2,116,35));
+		//this.addSlotToContainer(new Slot(tileEntityFurnace,0,56,17));//position of slot
+		this.addSlotToContainer(new Slot(tileEntityFurnace,9,148,58));//combustibile prima 1
+		this.addSlotToContainer(new SlotFurnace(player.player,tileEntityFurnace,10,116,35));//risultato
 		int i;
+		
+		for(int n=0;n<3;n++)
+		{
+			for(int m=0;m<3;m++)
+			{
+				this.addSlotToContainer(new Slot(tileEntityFurnace,m+n*3,22+18*(m),18+17*n));
+			}
+		}
 		
 		for(i=0;i<3;++i){
 			for(int j=0;j<9;++j){

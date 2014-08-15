@@ -2,6 +2,7 @@ package Morphesuss93.MorpheussTechCore.blocks.AlloyFurnace;
 
 import org.lwjgl.opengl.GL11;
 
+import Morphesuss93.MorpheussTechCore.Reference;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -13,7 +14,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GUIAlloyFurnace extends GuiContainer{
 
-	private static final ResourceLocation furnaceGuiTexture =new ResourceLocation("textures/gui/container/furnace.png");
+	//private static final ResourceLocation furnaceGuiTexture =new ResourceLocation("textures/gui/container/furnace.png");
+	private static final ResourceLocation furnaceGuiTexture =new ResourceLocation(Reference.MODID+":"+"textures/gui/container/Alloyfurnace.png");
 	private TileEntityAlloyFurnace tileFurnace;
 	
 	public GUIAlloyFurnace(InventoryPlayer invPlayer,TileEntityAlloyFurnace tile) {
@@ -41,7 +43,8 @@ public class GUIAlloyFurnace extends GuiContainer{
 		
 		if(this.tileFurnace.isBurning()){
 			i1=this.tileFurnace.getBurnTimeRemaningScaled(12);
-			this.drawTexturedModalRect(k + 56, l + 36 + 12 - i1, 176, 12 - i1, 14, i1 + 2);
+			//this.drawTexturedModalRect(k + 56, l + 36 + 12 - i1, 176, 12 - i1, 14, i1 + 2);
+			this.drawTexturedModalRect(k + 149, l + 42 + 12 - i1, 176, 12 - i1, 14, i1 + 2);
 		}
 		
 		i1=this.tileFurnace.getCookProgressScaled(24);//freccia

@@ -29,7 +29,7 @@ public class TileEntityAlloyFurnace extends TileEntity implements ISidedInventor
 	private static final int[] slotsSides=new int[]{1};
 	
 	
-	private ItemStack[] furnaceItemStacks=new ItemStack[3];
+	private ItemStack[] furnaceItemStacks=new ItemStack[11];
 	public int furnaceBurnTime;
 	public int currentBurnTime;//per quanto brucia il carburante
 	
@@ -159,16 +159,16 @@ public class TileEntityAlloyFurnace extends TileEntity implements ISidedInventor
 		
 		if(!this.worldObj.isRemote){
 			if(this.furnaceBurnTime==0 && this.canSmelt()){
-				this.currentBurnTime=this.furnaceBurnTime=getItemBurnTime(this.furnaceItemStacks[1]);
+				this.currentBurnTime=this.furnaceBurnTime=getItemBurnTime(this.furnaceItemStacks[9]);
 				
 				if(this.furnaceBurnTime>0){
 					flag1=true;
-					if(this.furnaceItemStacks[1]!=null){
-						--this.furnaceItemStacks[1].stackSize;
+					if(this.furnaceItemStacks[9]!=null){
+						--this.furnaceItemStacks[9].stackSize;
 					}
 					
-					if(this.furnaceItemStacks[1].stackSize==0){
-						this.furnaceItemStacks[1]=furnaceItemStacks[1].getItem().getContainerItem(this.furnaceItemStacks[1]);
+					if(this.furnaceItemStacks[9].stackSize==0){
+						this.furnaceItemStacks[9]=furnaceItemStacks[9].getItem().getContainerItem(this.furnaceItemStacks[9]);
 					}
 				}
 			}
@@ -202,10 +202,10 @@ public class TileEntityAlloyFurnace extends TileEntity implements ISidedInventor
 		}else{
 			ItemStack itemstack=FurnaceRecipes.smelting().getSmeltingResult(this.furnaceItemStacks[0]);
 			if(itemstack==null) return false;
-			if(this.furnaceItemStacks[2] == null) return true; //output slot
-			if(!this.furnaceItemStacks[2].isItemEqual(itemstack)) return false;
-			int result=this.furnaceItemStacks[2].stackSize+itemstack.stackSize;
-			return result <= getInventoryStackLimit() && result<=this.furnaceItemStacks[2].getMaxStackSize();
+			if(this.furnaceItemStacks[10] == null) return true; //output slot
+			if(!this.furnaceItemStacks[10].isItemEqual(itemstack)) return false;//10 2
+			int result=this.furnaceItemStacks[10].stackSize+itemstack.stackSize;
+			return result <= getInventoryStackLimit() && result<=this.furnaceItemStacks[10].getMaxStackSize();
 		}
 	}
 	
@@ -213,10 +213,10 @@ public class TileEntityAlloyFurnace extends TileEntity implements ISidedInventor
 		if(this.canSmelt()){
 			ItemStack itemstack=FurnaceRecipes.smelting().getSmeltingResult(this.furnaceItemStacks[0]);
 			
-			if(this.furnaceItemStacks[2]==null){
-				this.furnaceItemStacks[2]=itemstack.copy();
-			}else if(this.furnaceItemStacks[2].getItem()==itemstack.getItem()){
-				this.furnaceItemStacks[2].stackSize+=itemstack.stackSize;
+			if(this.furnaceItemStacks[10]==null){
+				this.furnaceItemStacks[10]=itemstack.copy();
+			}else if(this.furnaceItemStacks[10].getItem()==itemstack.getItem()){
+				this.furnaceItemStacks[10].stackSize+=itemstack.stackSize;
 			}
 			
 			--this.furnaceItemStacks[0].stackSize;
