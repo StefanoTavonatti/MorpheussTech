@@ -10,7 +10,7 @@ import Morphesuss93.MorpheussTechCore.blocks.BlockHandler;
 import Morphesuss93.MorpheussTechCore.handler.MGuiHandler;
 import Morphesuss93.MorpheussTechCore.items.ItemsHandler;
 
-import com.example.examplemod.ExampleMod;
+//import com.example.examplemod.ExampleMod;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -51,6 +51,8 @@ public class Core {
 		BlockHandler.configureRecipes();
 		BlockHandler.configureTile();
 		config.save();
+		
+		System.out.println("sono uguali? "+ItemsHandler.copperIngot.equals(ItemsHandler.copperIngot));
 	}
 	
     @EventHandler

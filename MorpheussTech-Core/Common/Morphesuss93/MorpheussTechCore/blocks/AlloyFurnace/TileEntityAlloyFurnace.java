@@ -1,5 +1,7 @@
 package Morphesuss93.MorpheussTechCore.blocks.AlloyFurnace;
 
+import java.util.ArrayList;
+
 import javax.swing.plaf.basic.BasicComboBoxUI.ItemHandler;
 
 import Morphesuss93.MorpheussTechCore.blocks.BlockHandler;
@@ -196,7 +198,7 @@ public class TileEntityAlloyFurnace extends TileEntity implements ISidedInventor
 	}
 	
 	
-	private boolean canSmelt(){
+	/*private boolean canSmelt(){
 		if(this.furnaceItemStacks[0]==null){
 			return false;
 		}else{
@@ -207,10 +209,66 @@ public class TileEntityAlloyFurnace extends TileEntity implements ISidedInventor
 			int result=this.furnaceItemStacks[10].stackSize+itemstack.stackSize;
 			return result <= getInventoryStackLimit() && result<=this.furnaceItemStacks[10].getMaxStackSize();
 		}
+	}*/
+	private boolean canSmelt(){
+		
+		ArrayList temp=new ArrayList();
+		boolean vuoto=true;
+		for(int i=0;i<9;i++){
+			if(furnaceItemStacks[i]!=null)
+			{
+				vuoto=false;
+				temp.add(furnaceItemStacks[i]);
+			}
+		}
+		
+		if(vuoto){
+			return false;
+		}else{
+			ItemStack itemstack=AlloyFurnaceRecipes.SMELTING_BASE.getSmeltingResult(temp);
+			if(itemstack==null) return false;
+			if(this.furnaceItemStacks[10] == null) return true; //output slot
+			if(!this.furnaceItemStacks[10].isItemEqual(itemstack)) return false;//10 2
+			int result=this.furnaceItemStacks[10].stackSize+itemstack.stackSize;
+			return result <= getInventoryStackLimit() && result<=this.furnaceItemStacks[10].getMaxStackSize();
+		}
 	}
 	
 	public void smeltItem(){
+		
+		ArrayList temp=new ArrayList();
+		boolean vuoto=true;
+		for(int i=0;i<9;i++){
+			if(furnaceItemStacks[i]!=null)
+			{
+				vuoto=false;
+				temp.add(furnaceItemStacks[i]);
+			}
+		}
+		
 		if(this.canSmelt()){
+			ItemStack itemstack=AlloyFurnaceRecipes.SMELTING_BASE.getSmeltingResult(temp);
+			
+			if(this.furnaceItemStacks[10]==null){
+				this.furnaceItemStacks[10]=itemstack.copy();
+			}else if(this.furnaceItemStacks[10].getItem()==itemstack.getItem()){
+				this.furnaceItemStacks[10].stackSize+=itemstack.stackSize;
+			}
+			
+			for(int i=0;i<9;i++){
+				if(this.furnaceItemStacks[i]!=null)
+				{
+					--this.furnaceItemStacks[i].stackSize;
+					
+					if(this.furnaceItemStacks[i].stackSize <= 0){
+						this.furnaceItemStacks[i] = null;
+					}
+				}
+			}
+			
+		}
+		
+		/*if(this.canSmelt()){
 			ItemStack itemstack=FurnaceRecipes.smelting().getSmeltingResult(this.furnaceItemStacks[0]);
 			
 			if(this.furnaceItemStacks[10]==null){
@@ -225,7 +283,7 @@ public class TileEntityAlloyFurnace extends TileEntity implements ISidedInventor
 				this.furnaceItemStacks[0] = null;
 			}
 			
-		}
+		}*/
 	}
 
 	public static int getItemBurnTime(ItemStack itemstack){
