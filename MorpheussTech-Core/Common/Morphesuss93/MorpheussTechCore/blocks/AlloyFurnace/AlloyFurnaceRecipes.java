@@ -36,6 +36,15 @@ public class AlloyFurnaceRecipes {
 		
 		addRecipie(temp, ItemsHandler.bronzeIngot, 4);
 		
+		//////Brass///////
+		
+		temp=new ArrayList();//temporanea da cambiare
+		temp.add(new ItemStack(ItemsHandler.copperIngot));
+		temp.add(new ItemStack(ItemsHandler.copperIngot));
+		temp.add(new ItemStack(ItemsHandler.aluminiumIngot));
+		temp.add(new ItemStack(ItemsHandler.aluminiumIngot));
+		
+		addRecipie(temp, ItemsHandler.brassIngot, 4);
 		
 	}
 	

@@ -7,7 +7,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.oredict.OreDictionary;
 import Morphesuss93.MorpheussTechCore.Reference;
+import Morphesuss93.MorpheussTechCore.blocks.WorldGenerator.AluminiumWGenerator;
 import Morphesuss93.MorpheussTechCore.blocks.WorldGenerator.CopperWGenerator;
+import Morphesuss93.MorpheussTechCore.blocks.WorldGenerator.SilverWGenerator;
+import Morphesuss93.MorpheussTechCore.blocks.WorldGenerator.TinWGenerator;
 import Morphesuss93.MorpheussTechCore.blocks.ore.AluminiumOre;
 import Morphesuss93.MorpheussTechCore.blocks.ore.CopperOre;
 import Morphesuss93.MorpheussTechCore.blocks.ore.SilverOre;
@@ -56,6 +59,9 @@ public class BlockHandler {
 	public static void configureWGen()
 	{
 		GameRegistry.registerWorldGenerator(new CopperWGenerator(),0);
+		GameRegistry.registerWorldGenerator(new AluminiumWGenerator(), 0);
+		GameRegistry.registerWorldGenerator(new SilverWGenerator(), 0);
+		GameRegistry.registerWorldGenerator(new TinWGenerator(), 0);
 	}
 	
 	public static void configureRecipes(){

@@ -76,7 +76,7 @@ public class TileEntityAlloyFurnace extends TileEntity implements ISidedInventor
 
 	@Override
 	public String getInventoryName() {
-		return this.hasCustomInventoryName() ? this.furnaceName:"Tut Furnace";
+		return this.hasCustomInventoryName() ? this.furnaceName:"Alloy Furnace";
 	}
 
 	@Override
@@ -294,18 +294,20 @@ public class TileEntityAlloyFurnace extends TileEntity implements ISidedInventor
 			
 			if(item instanceof ItemBlock && Block.getBlockFromItem(item) !=Blocks.air){
 				Block block=Block.getBlockFromItem(item);
-				
+				/*
 				if(block== BlockHandler.copperOre){ //da cambiare, solo per test
 					return 200;
-				}
+				}*/
 				
-				if(block.getMaterial() == Material.rock){
+				if(block.getMaterial() == Material.wood){
 					return 300;
 				}
 			}
 				
-			if(item == ItemsHandler.copperIngot) return 1600;
-			if(item instanceof ItemTool && ((ItemTool)item).getToolMaterialName().endsWith("EMERALD")) return 300;
+			/*if(item == ItemsHandler.copperIngot) return 1600;
+			if(item instanceof ItemTool && ((ItemTool)item).getToolMaterialName().endsWith("EMERALD")) return 300;*/
+			if(item==Items.stick) return 100;
+			if(item==Items.coal) return 1600;
 			return GameRegistry.getFuelValue(itemstack);
 			
 		}

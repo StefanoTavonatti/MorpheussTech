@@ -41,6 +41,10 @@ public class AlloyFurnace extends BlockContainer{
 
 		this.setCreativeTab(Core.tabCore);
 		isBurning2=isActive;
+		
+		if(isActive){
+			this.setLightLevel(1.0F);
+		}
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -200,7 +204,7 @@ public class AlloyFurnace extends BlockContainer{
 		super.breakBlock(world, x, y, z, block, meta);
 	}
 	
-	@SideOnly(Side.CLIENT)
+	/*@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(World world,int x,int y,int z,Random random){
 		if(this.isBurning2){
 			int direction=world.getBlockMetadata(x, y, z);
@@ -221,7 +225,42 @@ public class AlloyFurnace extends BlockContainer{
 				world.spawnParticle("flame", (double) (xx - zz2), (double) yy, (double) (zz + xx2), 0.0F, 0.0F, 0.0F);
 			}
 		}
-	}
+	}*/
+	
+	@SideOnly(Side.CLIENT)
+    public void randomDisplayTick(World p_149734_1_, int p_149734_2_, int p_149734_3_, int p_149734_4_, Random p_149734_5_)
+    {
+        if (this.isBurning2)
+        {
+            int l = p_149734_1_.getBlockMetadata(p_149734_2_, p_149734_3_, p_149734_4_);
+            float f = (float)p_149734_2_ + 0.5F;
+            float f1 = (float)p_149734_3_ + 0.0F + p_149734_5_.nextFloat() * 6.0F / 16.0F;
+            float f2 = (float)p_149734_4_ + 0.5F;
+            float f3 = 0.52F;
+            float f4 = p_149734_5_.nextFloat() * 0.6F - 0.3F;
+
+            if (l == 4)
+            {
+                p_149734_1_.spawnParticle("smoke", (double)(f - f3), (double)f1, (double)(f2 + f4), 0.0D, 0.0D, 0.0D);
+                p_149734_1_.spawnParticle("flame", (double)(f - f3), (double)f1, (double)(f2 + f4), 0.0D, 0.0D, 0.0D);
+            }
+            else if (l == 5)
+            {
+                p_149734_1_.spawnParticle("smoke", (double)(f + f3), (double)f1, (double)(f2 + f4), 0.0D, 0.0D, 0.0D);
+                p_149734_1_.spawnParticle("flame", (double)(f + f3), (double)f1, (double)(f2 + f4), 0.0D, 0.0D, 0.0D);
+            }
+            else if (l == 2)
+            {
+                p_149734_1_.spawnParticle("smoke", (double)(f + f4), (double)f1, (double)(f2 - f3), 0.0D, 0.0D, 0.0D);
+                p_149734_1_.spawnParticle("flame", (double)(f + f4), (double)f1, (double)(f2 - f3), 0.0D, 0.0D, 0.0D);
+            }
+            else if (l == 3)
+            {
+                p_149734_1_.spawnParticle("smoke", (double)(f + f4), (double)f1, (double)(f2 + f3), 0.0D, 0.0D, 0.0D);
+                p_149734_1_.spawnParticle("flame", (double)(f + f4), (double)f1, (double)(f2 + f3), 0.0D, 0.0D, 0.0D);
+            }
+        }
+    }
 
 	@Override
 	public TileEntity createNewTileEntity(World world, int par2) {

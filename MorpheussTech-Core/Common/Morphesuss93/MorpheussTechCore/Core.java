@@ -47,7 +47,7 @@ public class Core {
 		config.load();
 		BlockHandler.configureBlock(config);
 		ItemsHandler.configureItems(config);
-		BlockHandler.configureWGen();
+		
 		BlockHandler.configureRecipes();
 		BlockHandler.configureTile();
 		config.save();
@@ -57,6 +57,8 @@ public class Core {
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
+    	BlockHandler.configureWGen();
+    	
 		proxy.registerRenders();
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new MGuiHandler());
     }

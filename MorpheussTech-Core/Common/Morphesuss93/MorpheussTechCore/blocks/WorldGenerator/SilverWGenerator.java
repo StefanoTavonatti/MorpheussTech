@@ -2,13 +2,13 @@ package Morphesuss93.MorpheussTechCore.blocks.WorldGenerator;
 
 import java.util.Random;
 
-import Morphesuss93.MorpheussTechCore.blocks.BlockHandler;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
+import Morphesuss93.MorpheussTechCore.blocks.BlockHandler;
 import cpw.mods.fml.common.IWorldGenerator;
 
-public class CopperWGenerator implements IWorldGenerator{
+public class SilverWGenerator implements IWorldGenerator{
 
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world,
@@ -34,12 +34,11 @@ public class CopperWGenerator implements IWorldGenerator{
 		for(int i=0;i<30;i++)//i=vene
 		{
 			int cordX= random.nextInt(16)+chunkX;
-			int cordY= random.nextInt(32)+28;
+			int cordY= random.nextInt(20)+22;
 			int cordZ= random.nextInt(16)+chunkZ;
 			
-			(new WorldGenMinable(BlockHandler.copperOre,5)).generate(world, random,cordX, cordY, cordZ);
+			(new WorldGenMinable(BlockHandler.silverOre,5)).generate(world, random,cordX, cordY, cordZ);
 		}
 			
 	}
-
 }
