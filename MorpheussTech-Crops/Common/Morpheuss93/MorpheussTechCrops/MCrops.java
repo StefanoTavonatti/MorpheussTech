@@ -1,6 +1,7 @@
 package Morpheuss93.MorpheussTechCrops;
 
 
+import Morpheuss93.MorpheussTechCrops.items.ItemsHandler;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -31,6 +32,9 @@ public class MCrops {
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event){
+		
+		ItemsHandler.configureItems();
+		ItemsHandler.configureRecipes();
 		
 	}
 	

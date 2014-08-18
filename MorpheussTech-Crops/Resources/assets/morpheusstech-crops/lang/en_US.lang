@@ -1,1 +1,6 @@
 itemGroup.MorpheussTech-Crops=MorpheussTech-Crops
+
+item.MacheteStone.name=Stone Machete
+item.MacheteIron.name=Iron Machete
+item.MacheteGold.name=Golden Machete
+item.MacheteDiamond.name=Diamond Machete
