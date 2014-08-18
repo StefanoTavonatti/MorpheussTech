@@ -45,6 +45,8 @@ public class AlloyFurnace extends BlockContainer{
 		if(isActive){
 			this.setLightLevel(1.0F);
 		}
+		
+		this.setHardness(1.0F);
 	}
 
 	@SideOnly(Side.CLIENT)

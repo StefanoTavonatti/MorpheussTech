@@ -13,7 +13,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.SidedProxy;
 
-@Mod(modid = Reference.MODID, version = Reference.VERSION)
+@Mod(modid = Reference.MODID, version = Reference.VERSION,dependencies = "required-after:MorpheussTech-Core")
 public class MCrops {
 	
 	@Instance(Reference.MODID)
