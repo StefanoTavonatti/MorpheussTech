@@ -1,6 +1,8 @@
 package Morpheuss93.MorpheussTechCrops;
 
 
+import Morpheuss93.MorpheussTechCrops.crops.CropsHandler;
+import Morpheuss93.MorpheussTechCrops.food.FoodHandler;
 import Morpheuss93.MorpheussTechCrops.items.ItemsHandler;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
@@ -35,6 +37,8 @@ public class MCrops {
 		
 		ItemsHandler.configureItems();
 		ItemsHandler.configureRecipes();
+		CropsHandler.configure();
+		FoodHandler.configure();
 		
 	}
 	
