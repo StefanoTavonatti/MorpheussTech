@@ -1,6 +1,8 @@
 itemGroup.MorpheussTech-Crops=MorpheussTech-Crops
 
 tile.AnanasPlant.name = Pineapple Plant
+tile.CottonCrop.name=Cotton Crop
+tile.Cotton.name=Cotton
 
 item.MacheteStone.name=Stone Machete
 item.MacheteIron.name=Iron Machete
@@ -9,4 +11,7 @@ item.MacheteDiamond.name=Diamond Machete
 item.MacheteBronze.name=Bronze Machete
 item.MacheteBrass.name=Brass Machete
 item.MacheteWood.name=Wooden Machete
+item.MacheteSteel.name=Steel Machete
 item.Ananas.name=Pineapple
+item.AnanasSeed.name=Pineapple Seed
+item.CottonSeed.name=Cotton Seed

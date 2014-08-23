@@ -15,25 +15,29 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import Morpheuss93.MorpheussTechCrops.Reference;
 import Morpheuss93.MorpheussTechCrops.food.FoodHandler;
+import Morpheuss93.MorpheussTechCrops.seed.SeedHandler;
 
 public class AnanasPlant extends Base{
 	
 	public AnanasPlant() {
 		super();
 		setBlockName("AnanasPlant");
+		
+		theSeed=SeedHandler.ananasSeed;
 		//setBlockTextureName(Reference.MODID+":Ananas_stage_0");
 	}
 	
 	@Override
 	public int quantityDropped(int meta, int fortune, Random random) {
 		//System.out.println("meta= "+meta);
-		return (meta/2);
+		//return (meta/2);
+		return meta==7?1:0;
 	}
 
 	@Override
 	public Item getItemDropped(int parMetadata, Random parRand, int parFortune)  {
 		//System.out.println("Ananas Dropped ");
-		return Items.potato;
+		return FoodHandler.ananas;
 	}
 	
 	@Override
@@ -80,4 +84,10 @@ public class AnanasPlant extends Base{
 		if(parWorld.getBlockMetadata(parX, parY, parZ)<4)
 			incrementGrowStage(parWorld, parX, parY, parZ);
     }
+	
+	@Override
+	protected Item func_149866_i() {
+		//return super.func_149866_i();
+		return SeedHandler.ananasSeed;
+	}
 }

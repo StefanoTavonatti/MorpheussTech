@@ -17,6 +17,7 @@ public class ItemsHandler {
 	public static TinIngot tinIngot;
 	public static BronzeIngot bronzeIngot;
 	public static BrassIngot brassIngot;
+	public static SteelIngot steelIngot;
 	
 	
 	public static void configureItems(Configuration config){
@@ -44,6 +45,10 @@ public class ItemsHandler {
 		GameRegistry.registerItem(brassIngot, Reference.MODID+"-"+brassIngot.getUnlocalizedName().substring(5));
 		OreDictionary.registerOre("ingotBrass", brassIngot);
 				
+		steelIngot=new SteelIngot();
+		GameRegistry.registerItem(steelIngot, Reference.MODID+"-"+steelIngot.getUnlocalizedName().substring(5));
+		OreDictionary.registerOre("ingotSteel", steelIngot);
+		
 		
 	}
 

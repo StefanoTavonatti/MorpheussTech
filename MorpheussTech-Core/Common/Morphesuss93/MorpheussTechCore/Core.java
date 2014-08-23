@@ -34,7 +34,7 @@ public class Core {
 	 public static CreativeTabs tabCore= new CreativeTabs("MorpheussTech-Core") {
 			@Override
 			public Item getTabIconItem() {
-				return Items.redstone;
+				return ItemsHandler.copperIngot;
 			}
 			
 	    };

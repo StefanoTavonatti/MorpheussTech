@@ -1,11 +1,8 @@
-package Morpheuss93.MorpheussTechCrops.crops;
-
-import java.util.Random;
+package Morpheuss93.MorpheussTechCrops.seed;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.IGrowable;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemFood;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -13,16 +10,23 @@ import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class BaseItemSeedFood extends ItemFood  implements IPlantable{
+public class SeedBase extends Item implements IPlantable{
 
-	private final Block theBlockPlant;
-	
-	private final Block soilId;//suolo su cui verrà piantato
-	
-	public BaseItemSeedFood(int parHealAmount, float parSaturationModifier, Block parBlockPlant, Block parSoilBlock) {
-		super(parHealAmount, parSaturationModifier, false);
-		 theBlockPlant = parBlockPlant;
-	     soilId = parSoilBlock;
+	public Block thePlant;
+	@Override
+	public EnumPlantType getPlantType(IBlockAccess world, int x, int y, int z) {
+		
+		return EnumPlantType.Crop;
+	}
+
+	@Override
+	public Block getPlant(IBlockAccess world, int x, int y, int z) {
+		return thePlant;
+	}
+
+	@Override
+	public int getPlantMetadata(IBlockAccess world, int x, int y, int z) {
+		return 0;
 	}
 	
 	 @Override
@@ -39,7 +43,7 @@ public class BaseItemSeedFood extends ItemFood  implements IPlantable{
 	                  parX, parY, parZ, ForgeDirection.UP, (IPlantable) this) && parWorld
 	                  .isAirBlock(parX, parY+1, parZ))
 	            {// place the plant block
-	                parWorld.setBlock(parX, parY+1, parZ, theBlockPlant);
+	                parWorld.setBlock(parX, parY+1, parZ, thePlant);
 	                // decrement the stack of seed items
 	                --parItemStack.stackSize;
 	                return true;
@@ -52,26 +56,5 @@ public class BaseItemSeedFood extends ItemFood  implements IPlantable{
 			 return false;
 		 }
 	 }
-
-	@Override
-	public EnumPlantType getPlantType(IBlockAccess world, int x, int y, int z) {
-		
-		return EnumPlantType.Crop;
-	}
-
-	@Override
-	public Block getPlant(IBlockAccess world, int x, int y, int z) {
-		return theBlockPlant;
-	}
-
-	@Override
-	public int getPlantMetadata(IBlockAccess world, int x, int y, int z) {
-		
-		return 0;
-	}
-	
-	public Block getSoilId(){
-		return soilId;
-	}
 
 }

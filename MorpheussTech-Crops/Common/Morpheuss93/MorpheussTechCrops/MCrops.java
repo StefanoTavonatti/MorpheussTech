@@ -4,6 +4,7 @@ package Morpheuss93.MorpheussTechCrops;
 import Morpheuss93.MorpheussTechCrops.crops.CropsHandler;
 import Morpheuss93.MorpheussTechCrops.food.FoodHandler;
 import Morpheuss93.MorpheussTechCrops.items.ItemsHandler;
+import Morpheuss93.MorpheussTechCrops.seed.SeedHandler;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -28,7 +29,7 @@ public class MCrops {
 		
 		@Override
 		public Item getTabIconItem() {
-			return Items.potato;
+			return FoodHandler.ananas;
 		}
 	};
 	
@@ -39,6 +40,7 @@ public class MCrops {
 		ItemsHandler.configureRecipes();
 		CropsHandler.configure();
 		FoodHandler.configure();
+		SeedHandler.configure();
 		
 	}
 	

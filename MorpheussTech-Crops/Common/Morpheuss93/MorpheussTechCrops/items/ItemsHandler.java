@@ -10,11 +10,14 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import cpw.mods.fml.common.registry.GameRegistry;
 import Morphesuss93.MorpheussTechCore.Materials;
 import Morpheuss93.MorpheussTechCrops.Reference;
+import Morpheuss93.MorpheussTechCrops.food.FoodHandler;
+import Morpheuss93.MorpheussTechCrops.items.tools.Knife;
 import Morpheuss93.MorpheussTechCrops.items.tools.Machete;
 
 public class ItemsHandler {
 
-	public static Machete macheteStone,macheteIron,macheteGold,macheteDiamond,macheteBronze,macheteBrass,macheteWood;
+	public static Machete macheteStone,macheteIron,macheteGold,macheteDiamond,macheteBronze,macheteBrass,macheteWood,macheteSteel;
+	public static Knife knife;
 	
 	
 	public static void configureItems(){
@@ -40,6 +43,14 @@ public class ItemsHandler {
 		
 		macheteWood=new Machete(ToolMaterial.WOOD,"MacheteWood");
 		GameRegistry.registerItem(macheteWood, Reference.MODID+"-"+macheteWood.getUnlocalizedName().substring(5));
+		
+		macheteSteel=new Machete(Materials.MaterialSteel, "MacheteSteel");
+		GameRegistry.registerItem(macheteSteel, Reference.MODID+"-"+macheteSteel.getUnlocalizedName().substring(5));
+		
+		knife=new Knife();
+		GameRegistry.registerItem(knife, Reference.MODID+"-"+knife.getUnlocalizedName().substring(5));
+		knife.setContainerItem(knife);
+		
 	}
 	
 	public static void configureRecipes(){
@@ -53,5 +64,8 @@ public class ItemsHandler {
 		//GameRegistry.addRecipe(new ItemStack(macheteBronze), new Object[]{"  d"," d ","s  ",'d',"ingotBronze",'s',Items.stick});
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(macheteBronze), true, new Object[]{"  d"," d ","s  ",'d',"ingotBronze",'s',Items.stick}));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(macheteBrass), true, new Object[]{"  d"," d ","s  ",'d',"ingotBrass",'s',Items.stick}));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(macheteSteel), true, new Object[]{"  d"," d ","s  ",'d',"ingotSteel",'s',Items.stick}));
+		
+		GameRegistry.addRecipe(new ItemStack(Items.potato,1),new Object[]{" A "," K ","   ",'A',FoodHandler.ananas,'K',knife});
 	}
 }

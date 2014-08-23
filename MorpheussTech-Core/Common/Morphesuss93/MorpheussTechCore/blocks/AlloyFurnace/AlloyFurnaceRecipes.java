@@ -46,6 +46,17 @@ public class AlloyFurnaceRecipes {
 		
 		addRecipie(temp, ItemsHandler.brassIngot, 4);
 		
+		//Steel//
+		
+		temp=new ArrayList();
+		temp.add(new ItemStack(Items.coal));
+		temp.add(new ItemStack(Items.iron_ingot));
+		temp.add(new ItemStack(Items.coal));
+		
+		addRecipie(temp, ItemsHandler.steelIngot, 1);
+		
+		
+		
 	}
 	
 	public void addRecipie(ArrayList recipie, Item result,int num){
@@ -77,13 +88,20 @@ public class AlloyFurnaceRecipes {
 					int[] id1=OreDictionary.getOreIDs(tempI);
 					int[] id2=OreDictionary.getOreIDs(tempI2);
 					
-					String s1=OreDictionary.getOreName(id1[0]);
-					String s2=OreDictionary.getOreName(id2[0]);
-					
-					
-					if(!s1.equals(s2))
+					if(id1.length ==0 || id2.length==0){
+						if(tempI.getItem()!=tempI2.getItem()){
+							uguali=false;
+						}
+					}else
 					{
-						uguali=false;
+						String s1=OreDictionary.getOreName(id1[0]);
+						String s2=OreDictionary.getOreName(id2[0]);
+						
+						
+						if(!s1.equals(s2))
+						{
+							uguali=false;
+						}
 					}
 				}
 				
