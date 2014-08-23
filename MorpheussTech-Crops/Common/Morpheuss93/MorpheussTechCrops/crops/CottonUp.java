@@ -6,6 +6,7 @@ import Morpheuss93.MorpheussTechCrops.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
 public class CottonUp extends Block{
@@ -14,6 +15,8 @@ public class CottonUp extends Block{
 		super(Material.grass);
 		this.setBlockName("Cotton");
 		this.setBlockTextureName(Reference.MODID+":CottonUp");
+		/*float f=0.5F;
+		setBlockBounds(0.5F-f, 0.0F, 0.0F-f, 0.5F+f, 0.25F, 0.5F+f);*/
 	}
 	
 	@Override
@@ -64,6 +67,11 @@ public class CottonUp extends Block{
     public boolean renderAsNormalBlock()
     {
         return false;
+    }
+    
+    public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_, int p_149668_4_)
+    {
+        return null;
     }
 
 }

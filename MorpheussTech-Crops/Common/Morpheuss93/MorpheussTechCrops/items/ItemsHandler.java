@@ -1,15 +1,21 @@
 package Morpheuss93.MorpheussTechCrops.items;
 
+
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import cpw.mods.fml.common.registry.GameRegistry;
 import Morphesuss93.MorpheussTechCore.Materials;
 import Morpheuss93.MorpheussTechCrops.Reference;
+import Morpheuss93.MorpheussTechCrops.CraftingManager.ShaplessRecipeDamages;
 import Morpheuss93.MorpheussTechCrops.food.FoodHandler;
 import Morpheuss93.MorpheussTechCrops.items.tools.Knife;
 import Morpheuss93.MorpheussTechCrops.items.tools.Machete;
@@ -66,6 +72,12 @@ public class ItemsHandler {
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(macheteBrass), true, new Object[]{"  d"," d ","s  ",'d',"ingotBrass",'s',Items.stick}));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(macheteSteel), true, new Object[]{"  d"," d ","s  ",'d',"ingotSteel",'s',Items.stick}));
 		
-		GameRegistry.addRecipe(new ItemStack(Items.potato,1),new Object[]{" A "," K ","   ",'A',FoodHandler.ananas,'K',knife});
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(knife), true, new Object[]{" d "," s ","   ",'d',"ingotSteel",'s',Items.stick}));
+		//GameRegistry.addRecipe(new ShaplessRecipeDamages(new ItemStack(Items.potato,1), new Object[]{FoodHandler.ananas,knife}));
+		
+		List l=new ArrayList();
+		l.add(new ItemStack(FoodHandler.ananas));
+		l.add(new ItemStack(knife));
+		GameRegistry.addRecipe(new ShaplessRecipeDamages(new ItemStack(Items.potato,1),l));
 	}
 }

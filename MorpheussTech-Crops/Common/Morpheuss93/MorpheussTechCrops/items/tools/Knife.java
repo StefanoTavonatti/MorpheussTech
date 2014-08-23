@@ -22,4 +22,13 @@ public class Knife extends ItemSword{
 	    {
 	        return false;
 	    }
+	 
+	 @Override
+	public ItemStack getContainerItem(ItemStack itemStack) {
+		// TODO Auto-generated method stub
+		//return super.getContainerItem(itemStack);
+		 ItemStack it=new ItemStack(itemStack.getItem());
+		 it.setItemDamage(itemStack.getItemDamage()+1);
+		 return it;
+	}
 }
