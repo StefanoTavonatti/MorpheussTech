@@ -9,20 +9,22 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class PineappleSlice extends ItemFood{
+public class PineappleSlice extends RottableFood{
 
 	public PineappleSlice() {
 		super(6,0.6F, false);
 		this.setUnlocalizedName("PineappleSlice");
 		this.setTextureName(Reference.MODID+":PineappleSlice");
 		this.setCreativeTab(MCrops.tabCrop);
+		this.setMaxStackSize(16);
+		
 	}
 
-	public void onUpdate(ItemStack itemstack, World world, Entity entity, int par1, boolean par2) {
+	/*public void onUpdate(ItemStack itemstack, World world, Entity entity, int par1, boolean par2) {
 		super.onUpdate(itemstack, world, entity, par1, par2);
 		
 		int dam=itemstack.getItemDamage();
-		System.out.println("asssssssssssssssss "+Minecraft.getMinecraft().getSystemTime());
+		//System.out.println("asssssssssssssssss "+Minecraft.getMinecraft().getSystemTime());
 		
 		if(entity.ticksExisted%1000==0 && dam <25)
 		{
@@ -40,5 +42,5 @@ public class PineappleSlice extends ItemFood{
 			
 		}
 		
-	}
+	}*/
 }

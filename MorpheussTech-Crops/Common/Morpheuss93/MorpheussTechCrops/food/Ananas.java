@@ -9,9 +9,10 @@ import net.minecraft.world.World;
 import Morpheuss93.MorpheussTechCrops.MCrops;
 import Morpheuss93.MorpheussTechCrops.Reference;
 import Morpheuss93.MorpheussTechCrops.seed.BaseItemSeedFood;
+import Morpheuss93.MorpheussTechCrops.seed.BaseRottableIteemSeedFood;
 import Morpheuss93.MorpheussTechCrops.crops.CropsHandler;
 
-public class Ananas extends BaseItemSeedFood{
+public class Ananas extends BaseRottableIteemSeedFood{
 
 	public Ananas(){
 		super(6,0.6F,CropsHandler.ananasPlant,Blocks.farmland);
@@ -19,19 +20,42 @@ public class Ananas extends BaseItemSeedFood{
 		setTextureName(Reference.MODID+":Ananas");
 		setCreativeTab(MCrops.tabCrop);
 		
-		this.setMaxStackSize(64);
-		this.setMaxDamage(25);
+		this.setMaxStackSize(1);
+		
+		/*old_time=new long[64];
+		for(int i=0;i<64;i++){
+			old_time[i]=0;
+		}*/
+		
 		
 	}
 	
-	public void onUpdate(ItemStack itemstack, World world, Entity entity, int par1, boolean par2) {
+	/*public static long old_time[];//a posizione par1
+	public static int old_stack_pos=-1;*/
+	//public static int[] giaUtdatati;//imp questo
+	
+	/*public void onUpdate(ItemStack itemstack, World world, Entity entity, int par1, boolean par2) {//par1=slot_pos
 		super.onUpdate(itemstack, world, entity, par1, par2);
 		
 		int dam=itemstack.getItemDamage();
 		//System.out.println("asssssssssssssssss "+entity.ticksExisted);
-		if(entity.ticksExisted%1000==0 && dam <25)
+		//System.out.println("Time Millis: "+par1);
+		//if(entity.ticksExisted%1000==0 && dam <25)
+		long time=System.currentTimeMillis()/1000;
+		
+		if(time%24==0 )
 		{
-			itemstack.setItemDamage(dam+1);
+			
+			if(dam <25 &&time!=old_time[par1])
+			{
+				old_time[par1]=time;
+				//old_stack_pos=par1;
+				itemstack.setItemDamage(dam+1);
+				System.out.println("Time Millis: "+System.currentTimeMillis());
+			}
+		}
+		else{
+			old_stack_pos=-1;
 		}
 		
 		if(dam==25){
@@ -46,5 +70,5 @@ public class Ananas extends BaseItemSeedFood{
 			
 		}
 		
-	}
+	}*/
 }

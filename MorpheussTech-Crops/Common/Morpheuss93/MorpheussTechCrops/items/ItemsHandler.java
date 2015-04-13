@@ -78,6 +78,6 @@ public class ItemsHandler {
 		List l=new ArrayList();
 		l.add(new ItemStack(FoodHandler.ananas));
 		l.add(new ItemStack(knife));
-		GameRegistry.addRecipe(new ShaplessRecipeDamages(new ItemStack(Items.potato,1),l));
+		GameRegistry.addRecipe(new ShaplessRecipeDamages(new ItemStack(FoodHandler.pineappleSlice,6),l));
 	}
 }

@@ -2,8 +2,10 @@ package Morpheuss93.MorpheussTechCrops.seed;
 
 import java.util.Random;
 
+import Morpheuss93.MorpheussTechCrops.food.FoodHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
@@ -19,10 +21,14 @@ public class BaseItemSeedFood extends ItemFood  implements IPlantable{
 	
 	private final Block soilId;//suolo su cui verrà piantato
 	
+	
+	
 	public BaseItemSeedFood(int parHealAmount, float parSaturationModifier, Block parBlockPlant, Block parSoilBlock) {
 		super(parHealAmount, parSaturationModifier, false);
 		 theBlockPlant = parBlockPlant;
 	     soilId = parSoilBlock;
+	     
+	     
 	}
 	
 	 @Override
@@ -73,5 +79,7 @@ public class BaseItemSeedFood extends ItemFood  implements IPlantable{
 	public Block getSoilId(){
 		return soilId;
 	}
+	
+	
 
 }

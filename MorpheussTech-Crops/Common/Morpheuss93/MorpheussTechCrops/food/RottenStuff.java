@@ -23,6 +23,7 @@ public class RottenStuff extends ItemFood{
 		// player.performHurtAnimation();
 		 //player.hurtTime=15;
 		 player.addPotionEffect(new PotionEffect(Potion.hunger.getId(),500));
+		 player.addPotionEffect(new PotionEffect(Potion.confusion.getId(),200));
 		 return super.onEaten(itemstack, world, player);
 	 }
 
