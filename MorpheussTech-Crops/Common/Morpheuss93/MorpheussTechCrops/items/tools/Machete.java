@@ -51,6 +51,9 @@ public class Machete extends ItemSword{
 			}else if(ran>=20 && ran <30){
 				itemDrop=SeedHandler.cottonSeed;
 				drop=true;
+			}else if(ran>=30 && ran<40){
+				itemDrop=SeedHandler.corn;
+				drop=true;
 			}
 			
 			if(drop)

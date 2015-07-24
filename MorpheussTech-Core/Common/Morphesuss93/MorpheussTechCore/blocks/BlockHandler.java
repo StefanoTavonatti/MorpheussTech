@@ -74,7 +74,7 @@ public class BlockHandler {
 		
 		
 		////crafting////
-		GameRegistry.addShapedRecipe(new ItemStack(AlloyFurnace,1), new Object[]{"BFB","B B","BFB",'B',Items.brick,'F',Blocks.furnace});
+		GameRegistry.addShapedRecipe(new ItemStack(AlloyFurnace,1), new Object[]{"BFB","B B","BFB",'B',Blocks.brick_block,'F',Blocks.furnace});
 	}
 	
 	public static void configureTile()
