@@ -107,7 +107,7 @@ public class AlloyFurnaceRecipes {
 				
 			}
 			if(uguali){
-				result=new ItemStack((Item)results.get(i),(int)quantity.get(i));
+				result=new ItemStack((Item)results.get(i),(Integer)quantity.get(i));
 			}
 		}
 		return result;

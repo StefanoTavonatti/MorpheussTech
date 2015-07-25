@@ -36,6 +36,6 @@ public class SeedHandler {
 	public static void configureRecipe(){
 		List l=new ArrayList();
 		l.add(new ItemStack(FoodHandler.corncob));
-		GameRegistry.addRecipe(new ShaplessRecipeDamages(new ItemStack(corn,8),l));
+		GameRegistry.addRecipe(new ShaplessRecipeDamages(new ItemStack(corn,1),l));
 	}
 }

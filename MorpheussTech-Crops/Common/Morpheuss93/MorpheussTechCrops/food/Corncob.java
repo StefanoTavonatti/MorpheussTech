@@ -6,7 +6,7 @@ import Morpheuss93.MorpheussTechCrops.Reference;
 public class Corncob extends RottableFood{
 
 	public Corncob() {
-		super(2, 2.0F, false);
+		super(1, 1.0F, false);
 		this.setUnlocalizedName("Corncob");
 		this.setTextureName(Reference.MODID+":Corncob");
 		this.setCreativeTab(MCrops.tabCrop);
