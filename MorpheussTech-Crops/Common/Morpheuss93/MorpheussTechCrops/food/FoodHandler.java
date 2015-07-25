@@ -10,12 +10,14 @@ public class FoodHandler {
 	public final static Item rottenStuff=new RottenStuff();
 	public final static Item pineappleSlice=new PineappleSlice();
 	public final static Item corncob=new Corncob();
+	public final static Item popcorn=new Popcorn();
 	
 	public static void configure(){
 		GameRegistry.registerItem(ananas, Reference.MODID+"-"+ananas.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(rottenStuff, Reference.MODID+"-"+rottenStuff.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(pineappleSlice, Reference.MODID+"-"+pineappleSlice.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(corncob, Reference.MODID+"-"+corncob.getUnlocalizedName().substring(5));
+		GameRegistry.registerItem(popcorn, Reference.MODID+"-"+popcorn.getUnlocalizedName().substring(5));
 		
 	}
 }

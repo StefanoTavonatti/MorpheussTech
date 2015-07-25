@@ -8,6 +8,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import Morphesuss93.MorpheussTechCore.items.ItemsHandler;
 import Morpheuss93.MorpheussTechCrops.Reference;
 import Morpheuss93.MorpheussTechCrops.CraftingManager.ShaplessRecipeDamages;
 import Morpheuss93.MorpheussTechCrops.food.FoodHandler;
@@ -37,5 +38,9 @@ public class SeedHandler {
 		List l=new ArrayList();
 		l.add(new ItemStack(FoodHandler.corncob));
 		GameRegistry.addRecipe(new ShaplessRecipeDamages(new ItemStack(corn,1),l));
+		
+		
+		
+		GameRegistry.addSmelting(corn, new ItemStack(FoodHandler.popcorn), 0.8F);
 	}
 }
