@@ -1,10 +1,16 @@
 package Morphesuss93.MorpheussTechCore.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBucket;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import Morphesuss93.MorpheussTechCore.Reference;
 import Morphesuss93.MorpheussTechCore.blocks.WorldGenerator.AluminiumWGenerator;
@@ -15,6 +21,7 @@ import Morphesuss93.MorpheussTechCore.blocks.ore.AluminiumOre;
 import Morphesuss93.MorpheussTechCore.blocks.ore.CopperOre;
 import Morphesuss93.MorpheussTechCore.blocks.ore.SilverOre;
 import Morphesuss93.MorpheussTechCore.blocks.ore.TinOre;
+import Morphesuss93.MorpheussTechCore.fluids.AlcoholBlock;
 import Morphesuss93.MorpheussTechCore.items.ItemsHandler;
 import Morphesuss93.MorpheussTechCore.blocks.AlloyFurnace.*;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -27,6 +34,8 @@ public class BlockHandler {
 	public static AluminiumOre aluminiumOre;
 	public static Block AlloyFurnace;
 	public static Block AlloyFurnaceActive;
+	public static Fluid alcohol = new Fluid("Alcohol");
+	public static AlcoholBlock alcoholBlock;
 	
 	public static void configureBlock(Configuration config)
 	{
@@ -53,6 +62,17 @@ public class BlockHandler {
 		AlloyFurnaceActive=new AlloyFurnace(true).setBlockName("AlloyFurnaceActive");
 		GameRegistry.registerBlock(AlloyFurnace, Reference.MODID+"-"+AlloyFurnace.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(AlloyFurnaceActive, Reference.MODID+"-"+AlloyFurnaceActive.getUnlocalizedName().substring(5));
+	
+		
+		
+		FluidRegistry.registerFluid(alcohol);
+		alcoholBlock = new AlcoholBlock(alcohol, Material.water);
+		alcoholBlock.setBlockName("Alcohol");
+		GameRegistry.registerBlock(alcoholBlock, Reference.MODID + "_" + alcoholBlock.getUnlocalizedName().substring(5));
+		alcohol.setUnlocalizedName(alcoholBlock.getUnlocalizedName());
+		
+		
+		
 		
 	}
 	

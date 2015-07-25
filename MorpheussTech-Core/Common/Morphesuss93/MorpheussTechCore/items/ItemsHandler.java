@@ -2,11 +2,19 @@ package Morphesuss93.MorpheussTechCore.items;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import Morphesuss93.MorpheussTechCore.Reference;
+import Morphesuss93.MorpheussTechCore.blocks.BlockHandler;
+import Morphesuss93.MorpheussTechCore.fluids.BucketHandler;
 import Morphesuss93.MorpheussTechCore.items.ingot.*;
 import Morphesuss93.MorpheussTechCore.items.ingot.alloy.BrassIngot;
 import Morphesuss93.MorpheussTechCore.items.ingot.alloy.BronzeIngot;
 import net.minecraft.block.Block;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBucket;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class ItemsHandler {
@@ -18,6 +26,7 @@ public class ItemsHandler {
 	public static BronzeIngot bronzeIngot;
 	public static BrassIngot brassIngot;
 	public static SteelIngot steelIngot;
+	public static Item alcoholBucket;
 	
 	
 	public static void configureItems(Configuration config){
@@ -49,6 +58,12 @@ public class ItemsHandler {
 		GameRegistry.registerItem(steelIngot, Reference.MODID+"-"+steelIngot.getUnlocalizedName().substring(5));
 		OreDictionary.registerOre("ingotSteel", steelIngot);
 		
+		alcoholBucket = new ItemBucket(BlockHandler.alcoholBlock).setUnlocalizedName("AlcoholBucket").setContainerItem(Items.bucket).setTextureName(Reference.MODID+":"+"AlcoholBucket");
+		GameRegistry.registerItem(alcoholBucket, Reference.MODID+"_"+"AlcoholBucket");
+		FluidContainerRegistry.registerFluidContainer(BlockHandler.alcohol,new ItemStack(alcoholBucket),new ItemStack(Items.bucket));
+		//gestisco l'evento del fluido che viene raccolto
+		BucketHandler.INSTANCE.buckets.put(BlockHandler.alcoholBlock, alcoholBucket);
+		MinecraftForge.EVENT_BUS.register(BucketHandler.INSTANCE);
 		
 	}
 

@@ -30,7 +30,7 @@ public class SilverWGenerator implements IWorldGenerator{
 	}
 
 	private void generateSurface(World world, Random random, int chunkX, int chunkZ) {
-		
+		random=new Random();
 		for(int i=0;i<30;i++)//i=vene
 		{
 			int cordX= random.nextInt(16)+chunkX;
