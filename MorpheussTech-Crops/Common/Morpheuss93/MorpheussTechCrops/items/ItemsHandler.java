@@ -17,6 +17,8 @@ import Morphesuss93.MorpheussTechCore.Materials;
 import Morpheuss93.MorpheussTechCrops.Reference;
 import Morpheuss93.MorpheussTechCrops.CraftingManager.ShaplessRecipeDamages;
 import Morpheuss93.MorpheussTechCrops.food.FoodHandler;
+import Morpheuss93.MorpheussTechCrops.items.consumables.FishingNet;
+import Morpheuss93.MorpheussTechCrops.items.craftingComponent.CottonCloth;
 import Morpheuss93.MorpheussTechCrops.items.tools.Knife;
 import Morpheuss93.MorpheussTechCrops.items.tools.Machete;
 
@@ -24,6 +26,8 @@ public class ItemsHandler {
 
 	public static Machete macheteStone,macheteIron,macheteGold,macheteDiamond,macheteBronze,macheteBrass,macheteWood,macheteSteel;
 	public static Knife knife;
+	public static FishingNet fishingNet;
+	public static CottonCloth cottonCloth;
 	
 	
 	public static void configureItems(){
@@ -57,6 +61,12 @@ public class ItemsHandler {
 		GameRegistry.registerItem(knife, Reference.MODID+"-"+knife.getUnlocalizedName().substring(5));
 		knife.setContainerItem(knife);
 		
+		fishingNet=new FishingNet();
+		GameRegistry.registerItem(fishingNet, Reference.MODID+"-"+fishingNet.getUnlocalizedName().substring(5));
+		
+		cottonCloth=new CottonCloth();
+		GameRegistry.registerItem(cottonCloth, Reference.MODID+"-"+cottonCloth.getUnlocalizedName().substring(5));
+		
 	}
 	
 	public static void configureRecipes(){
@@ -79,5 +89,8 @@ public class ItemsHandler {
 		l.add(new ItemStack(FoodHandler.ananas));
 		l.add(new ItemStack(knife));
 		GameRegistry.addRecipe(new ShaplessRecipeDamages(new ItemStack(FoodHandler.pineappleSlice,6),l));
+		
+		GameRegistry.addShapedRecipe(new ItemStack(cottonCloth,1), new Object[]{"sss","sss","sss",'s',Items.string});
+		GameRegistry.addShapedRecipe(new ItemStack(fishingNet), new Object[]{"scs","scs","scs",'s',Items.stick,'c',cottonCloth});
 	}
 }

@@ -5,6 +5,7 @@ tile.CottonCrop.name=Cotton Crop
 tile.Cotton.name=Cotton
 tile.CornCrop.name=Corn Crop
 tile.Corn.name=Corn
+tile.Fish Trap.name=Fish Trap
 
 item.MacheteStone.name=Stone Machete
 item.MacheteIron.name=Iron Machete
@@ -23,3 +24,5 @@ item.PineappleSlice.name=Pineapple Slice
 item.Corncob.name=Corncob
 item.Corn.name=Corn
 item.Popcorn.name=Popcorn
+item.FishingNet.name=Fishing Net
+item.CottonCloth.name=Cotton Cloth

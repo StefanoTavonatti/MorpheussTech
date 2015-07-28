@@ -16,6 +16,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -32,6 +33,9 @@ public class FishTrap extends BlockContainer{
 	
 	@SideOnly(Side.CLIENT)
 	private IIcon front;
+	
+	@SideOnly(Side.CLIENT)
+	private IIcon latSide;
 
 	private static boolean isBurning;
 	private final boolean isBurning2;
@@ -49,6 +53,7 @@ public class FishTrap extends BlockContainer{
 		
 		this.setHardness(1.0F);
 	}
+	
 
 	//TODO cambiare
 	@SideOnly(Side.CLIENT)
@@ -56,12 +61,13 @@ public class FishTrap extends BlockContainer{
 		this.blockIcon=iconregister.registerIcon(Reference.MODID+":FishTrap");
 		this.front=iconregister.registerIcon(this.isBurning2 ? Reference.MODID+":FishTrap" : Reference.MODID+":FishTrap");//TODO Active sott'acqua
 		this.top=iconregister.registerIcon(Reference.MODID+":FishTrap");
+		this.latSide=iconregister.registerIcon(Reference.MODID+":"+"FishTrapLat");
 	}
 	
 	
 public IIcon getIcon(int side,int meta){
 		
-		return side == 1 ? this.top : ( side ==0? this.top : (side!=meta?this.blockIcon:this.front));
+		return side == 1 ? this.top : ( side ==0? this.top : (side==4||side==5? this.latSide :(side!=meta?this.blockIcon:this.front)));
 	}
 	
 	public boolean onBlockActivated(World world,int x,int y,int z,EntityPlayer player,int par6,float par7,float par8,float par9){
@@ -326,6 +332,72 @@ public IIcon getIcon(int side,int meta){
 	@Override
 	public TileEntity createNewTileEntity(World world, int par2) {
 		return new TileEntityFishTrap();
+	}
+	
+	@Override
+	public int onBlockPlaced(World world, int x,int y, int z, int p_149660_5_,float p_149660_6_, float p_149660_7_, float p_149660_8_,
+			int p_149660_9_) {
+		
+		int result=super.onBlockPlaced(world, x, y, z,
+				p_149660_5_, p_149660_6_, p_149660_7_, p_149660_8_, p_149660_9_);
+		System.out.println(""+x+" "+y+" "+z);
+		/*boolean valid=isInWater(world, x, y, z);
+		
+		TileEntityFishTrap tileEntityFishTrap=(TileEntityFishTrap) world.getTileEntity(x, y, z);
+		tileEntityFishTrap.setValidPosition(valid);
+		tileEntityFishTrap.validate();*/
+		
+		return result;
+	}
+	
+	
+	@Override
+	public void onNeighborBlockChange(World world, int x,
+			int y, int z, Block p_149695_5_) {
+		
+			/*boolean valid=isInWater(world, x, y, z);
+			
+			TileEntityFishTrap tileEntityFishTrap=(TileEntityFishTrap) world.getTileEntity(x, y, z);
+			tileEntityFishTrap.setValidPosition(valid);
+			tileEntityFishTrap.validate();*/
+		
+		super.onNeighborBlockChange(world, x, y, z,p_149695_5_);
+	}
+	
+	public boolean isInWater(World world,int x,int y,int z){
+		boolean valid=true;
+		
+		for(int i=-1;i<=1;i++){
+			for(int j=-1;j<=1;j++){
+				if(!(i==0 && j==0)){
+					if(world.getBlock(x, y, z)!=Blocks.water){
+						valid=false;
+						break;
+					}
+				}
+			}
+			
+			if(!valid)
+				return valid;
+		}
+		
+		
+		for(int i=-1;i<=1;i++){
+			for(int j=-1;j<=1;j++){
+				if(!(i==0 && j==0)){
+					if(world.getBlock(x, y+1, z)!=Blocks.water){
+						valid=false;
+						break;
+					}
+				}
+			}
+			
+			if(!valid)
+				return valid;
+		}
+		
+		return valid;
+		
 	}
 
 }

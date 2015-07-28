@@ -41,7 +41,7 @@ public class GUIFishTrap extends GuiContainer{
 		if(this.tileFurnace.isBurning()){
 			i1=this.tileFurnace.getBurnTimeRemaningScaled(12);
 			//this.drawTexturedModalRect(k + 56, l + 36 + 12 - i1, 176, 12 - i1, 14, i1 + 2);
-			this.drawTexturedModalRect(k + 149, l + 42 + 12 - i1, 176, 12 - i1, 14, i1 + 2);
+			//this.drawTexturedModalRect(k + 149, l + 42 + 12 - i1, 176, 12 - i1, 14, i1 + 2);
 		}
 		
 		i1=this.tileFurnace.getCookProgressScaled(24);//freccia

@@ -1,9 +1,11 @@
 package Morpheuss93.MorpheussTechCrops.blocks.fishtrap;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import Morphesuss93.MorpheussTechCore.blocks.AlloyFurnace.AlloyFurnace;
 import Morphesuss93.MorpheussTechCore.blocks.AlloyFurnace.AlloyFurnaceRecipes;
+import Morpheuss93.MorpheussTechCrops.items.ItemsHandler;
 import Morpheuss93.MorpheussTechCrops.seed.SeedHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -20,6 +22,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 
 public class TileEntityFishTrap extends TileEntity implements ISidedInventory{
 
@@ -35,6 +38,8 @@ public class TileEntityFishTrap extends TileEntity implements ISidedInventory{
 	public int furnaceCookTime;
 	
 	private String furnaceName;
+	
+	private boolean validPosition=false;
 	
 	public void furnaceName(String string){
 		this.furnaceName=string;
@@ -216,26 +221,47 @@ public class TileEntityFishTrap extends TileEntity implements ISidedInventory{
 		}
 	}*/
 	private boolean canSmelt(){
-		
+		validPosition=isInWater(this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+		if(!validPosition)
+			return false;
 		//TODO Controllare rete, slot per tipi diversi di pesce controllare slot liberi per il can smelt
 		if(this.furnaceItemStacks[1]!=null)
-			//if(this.furnaceItemStacks[0].getItem()==SeedHandler.corn){//TODO aggiungere rete//NON NULL
-				return true;
-			//}
+		{
+			if(this.furnaceItemStacks[1].getItem()==ItemsHandler.fishingNet){//TODO aggiungere rete//NON NULL
+				if(this.furnaceItemStacks[2]!=null){
+					ItemStack itemStack=this.furnaceItemStacks[2];
+					//System.out.println(this.furnaceItemStacks[1].getItemDamage());
+					if(itemStack.stackSize<= itemStack.getMaxStackSize())
+						return true;
+				}
+				else
+					return true;
+			}
+		}
 		return false;
 	}
 	
 	public void smeltItem(){
 		
+		Random random=new Random();
 		ArrayList temp=new ArrayList();
 		
 		if(this.canSmelt()){
-			ItemStack itemstack=new ItemStack(Items.fish,1);
+			int r=random.nextInt(100);
 			
-			if(this.furnaceItemStacks[2]==null){
-				this.furnaceItemStacks[2]=itemstack.copy();
-			}else if(this.furnaceItemStacks[2].getItem()==itemstack.getItem()){
-				this.furnaceItemStacks[2].stackSize+=itemstack.stackSize;
+			if(r<50)
+			{
+				ItemStack itemstack=new ItemStack(Items.fish,1,1);
+				
+				this.furnaceItemStacks[1].setItemDamage(this.furnaceItemStacks[1].getItemDamage()+1);
+				if(this.furnaceItemStacks[1].getItemDamage()==this.furnaceItemStacks[1].getItem().getMaxDamage())
+					this.furnaceItemStacks[1]=null;
+				
+				if(this.furnaceItemStacks[2]==null){
+					this.furnaceItemStacks[2]=itemstack.copy();
+				}else if(this.furnaceItemStacks[2].getItem()==itemstack.getItem()){
+					this.furnaceItemStacks[2].stackSize+=itemstack.stackSize;
+				}
 			}
 		}
 			
@@ -340,5 +366,43 @@ public class TileEntityFishTrap extends TileEntity implements ISidedInventory{
 	@Override
 	public int[] getAccessibleSlotsFromSide(int par1) {
 		return par1 == 0 ? slotsBottom : (par1==1 ?slotsTop:slotsSides);
+	}
+	
+	public void setValidPosition(boolean valid){
+		validPosition=valid;
+	}
+	
+	public boolean isInWater(World world,int x,int y,int z){
+		boolean valid=true;
+		
+		for(int i=-1;i<=1;i++){
+			for(int j=-1;j<=1;j++){
+				if(!(i==0 && j==0)){
+					if(world.getBlock(x+i, y, z+j)!=Blocks.water){
+						valid=false;
+						break;
+					}
+				}
+			}
+			
+			if(!valid)
+				return valid;
+		}
+		
+		
+		for(int i=-1;i<=1;i++){
+			for(int j=-1;j<=1;j++){
+				if(world.getBlock(x+i, y+1, z+j)!=Blocks.water){
+					valid=false;
+					break;
+				}
+			}
+			
+			if(!valid)
+				return valid;
+		}
+		
+		return valid;
+		
 	}
 }
