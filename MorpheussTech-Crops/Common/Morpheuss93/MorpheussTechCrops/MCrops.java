@@ -1,8 +1,9 @@
 package Morpheuss93.MorpheussTechCrops;
 
-
+import Morpheuss93.MorpheussTechCrops.blocks.BlockHandler;
 import Morpheuss93.MorpheussTechCrops.crops.CropsHandler;
 import Morpheuss93.MorpheussTechCrops.food.FoodHandler;
+import Morpheuss93.MorpheussTechCrops.handler.MGuiHandler;
 import Morpheuss93.MorpheussTechCrops.items.ItemsHandler;
 import Morpheuss93.MorpheussTechCrops.seed.SeedHandler;
 import net.minecraft.creativetab.CreativeTabs;
@@ -14,6 +15,7 @@ import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.SidedProxy;
 
 @Mod(modid = Reference.MODID, version = Reference.VERSION,dependencies = "required-after:MorpheussTech-Core")
@@ -36,6 +38,8 @@ public class MCrops {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event){
 		
+		BlockHandler.configureBlocks();
+		BlockHandler.configureTile();
 		ItemsHandler.configureItems();
 		ItemsHandler.configureRecipes();
 		CropsHandler.configure();
@@ -46,7 +50,8 @@ public class MCrops {
 	
 	@EventHandler
 	public void init(FMLInitializationEvent event){
-		
+		proxy.registerRenders();
+		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new MGuiHandler());
 	}
 	
 	@EventHandler
