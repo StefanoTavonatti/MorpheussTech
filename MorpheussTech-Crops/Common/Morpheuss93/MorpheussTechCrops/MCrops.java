@@ -38,13 +38,15 @@ public class MCrops {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event){
 		
-		BlockHandler.configureBlocks();
-		BlockHandler.configureTile();
+		
 		ItemsHandler.configureItems();
 		ItemsHandler.configureRecipes();
 		CropsHandler.configure();
 		FoodHandler.configure();
 		SeedHandler.configure();
+		BlockHandler.configureBlocks();
+		BlockHandler.configureRecipes();
+		BlockHandler.configureTile();
 		
 	}
 	
