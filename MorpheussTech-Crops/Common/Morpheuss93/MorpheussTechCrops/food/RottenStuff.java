@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 public class RottenStuff extends ItemFood{
 
 	public RottenStuff() {
-		super(0,0.0F, false);
+		super(1,0.0F, false);
 		this.setUnlocalizedName("RottenStuff");
 		this.setTextureName(Reference.MODID+":RottenStuff");
 		setCreativeTab(MCrops.tabCrop);

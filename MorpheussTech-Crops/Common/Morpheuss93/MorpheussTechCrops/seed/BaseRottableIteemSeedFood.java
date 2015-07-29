@@ -49,7 +49,7 @@ public class BaseRottableIteemSeedFood extends BaseItemSeedFood{
 				old_stack_pos=-1;
 			}
 			
-			if(dam==25){
+			if(dam==24){
 				if(entity instanceof EntityPlayer)
 				{
 					ItemStack it=new ItemStack(FoodHandler.rottenStuff,itemstack.stackSize);
