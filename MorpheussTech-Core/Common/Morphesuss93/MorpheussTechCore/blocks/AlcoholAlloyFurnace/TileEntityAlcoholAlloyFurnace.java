@@ -109,7 +109,6 @@ public class TileEntityAlcoholAlloyFurnace extends TileEntityAlloyFurnace implem
     
     public void useFuel(int quantity){
     	fluidAmount-=quantity;
-    	System.out.println("amoun "+fluidAmount+" "+worldObj.isRemote);
     	tank.drain(quantity, true);
     	worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 		this.markDirty();
