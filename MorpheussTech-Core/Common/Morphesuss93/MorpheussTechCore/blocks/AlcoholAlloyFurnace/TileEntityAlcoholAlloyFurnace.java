@@ -14,6 +14,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
+import Morphesuss93.MorpheussTechCore.blocks.AlloyFurnace.AlloyFurnace;
 import Morphesuss93.MorpheussTechCore.blocks.AlloyFurnace.TileEntityAlloyFurnace;
 
 public class TileEntityAlcoholAlloyFurnace extends TileEntityAlloyFurnace implements IFluidHandler{
@@ -45,33 +46,23 @@ public class TileEntityAlcoholAlloyFurnace extends TileEntityAlloyFurnace implem
 
 	@Override
 	public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
-		// TODO Auto-generated method stub
-		//this.markDirty();
-		//this.validate();
+		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+		this.markDirty();
 		return tank.drain(maxDrain, doDrain);
 	}
 
 	@Override
 	public boolean canFill(ForgeDirection from, Fluid fluid) {
-		// TODO Auto-generated method stub
-		//this.markDirty();
-		//this.validate();
 		return true;
 	}
 
 	@Override
 	public boolean canDrain(ForgeDirection from, Fluid fluid) {
-		// TODO Auto-generated method stub
-		//this.markDirty();
-		//this.validate();
 		return true;
 	}
 
 	@Override
 	public FluidTankInfo[] getTankInfo(ForgeDirection from) {
-		// TODO Auto-generated method stub
-		//this.markDirty();
-		//this.validate();
 		 return new FluidTankInfo[] { tank.getInfo() };
 	}
 	
@@ -113,6 +104,15 @@ public class TileEntityAlcoholAlloyFurnace extends TileEntityAlloyFurnace implem
     
     }
     
+    public void useFuel(int quantity){
+    	tank.drain(quantity, true);
+    }
+    
+    @SideOnly(Side.CLIENT)
+	public int getTankScaled(int levelMax){
+		return this.getTankAmount()*levelMax/tank.getCapacity();
+	}
+    
     /**
      * i cambiamenti nella gui vanno sincronizzati
      */
@@ -127,5 +127,50 @@ public class TileEntityAlcoholAlloyFurnace extends TileEntityAlloyFurnace implem
     public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
         readFromNBT(pkt.func_148857_g());
     }
+    
+    @Override
+    public void updateEntity(){//TODO, riempire da sechhio slot 9
+		boolean flag=this.furnaceBurnTime>0;
+		boolean flag1=false;
+		
+		if(this.furnaceBurnTime>0){
+			--this.furnaceBurnTime;
+		}
+		
+		if(!this.worldObj.isRemote){
+			if(this.furnaceBurnTime==0 && this.canSmelt()){
+				if(this.getTankAmount()>=100)//Quantità di alcohol necessaria alla cottura
+					this.currentBurnTime=this.furnaceBurnTime=200;
+				else
+					this.currentBurnTime=this.furnaceBurnTime=0;
+				
+				if(this.furnaceBurnTime>0){
+					flag1=true;
+					useFuel(200);
+				}
+			}
+			
+			if(this.isBurning() && this.canSmelt()){
+				++this.furnaceCookTime;
+				if(this.furnaceCookTime==200){
+					this.furnaceCookTime=0;
+					this.smeltItem();
+					flag1=true;
+				}
+			}else{
+				this.furnaceCookTime=0;
+			}
+		}
+		
+		if(flag !=this.furnaceBurnTime>0){
+			flag1=true;
+			AlcoholAlloyFurnace.updateBlockStateAlcoholAlloyFurnace(this.furnaceBurnTime>0, this.worldObj, this.xCoord,this.yCoord , this.zCoord);
+		}
+		
+		if(flag1){
+			worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+			this.markDirty();
+		}
+	}
 
 }

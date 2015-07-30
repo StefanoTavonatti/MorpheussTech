@@ -31,7 +31,7 @@ public class TileEntityAlloyFurnace extends TileEntity implements ISidedInventor
 	private static final int[] slotsSides=new int[]{1};
 	
 	
-	private ItemStack[] furnaceItemStacks=new ItemStack[11];
+	protected ItemStack[] furnaceItemStacks=new ItemStack[11];
 	public int furnaceBurnTime;
 	public int currentBurnTime;//per quanto brucia il carburante
 	
@@ -210,7 +210,7 @@ public class TileEntityAlloyFurnace extends TileEntity implements ISidedInventor
 			return result <= getInventoryStackLimit() && result<=this.furnaceItemStacks[10].getMaxStackSize();
 		}
 	}*/
-	private boolean canSmelt(){
+	protected boolean canSmelt(){
 		
 		ArrayList temp=new ArrayList();
 		boolean vuoto=true;

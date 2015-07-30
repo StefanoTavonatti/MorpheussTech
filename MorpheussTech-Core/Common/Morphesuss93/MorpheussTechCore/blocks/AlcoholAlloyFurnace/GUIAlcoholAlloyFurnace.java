@@ -1,12 +1,18 @@
 package Morphesuss93.MorpheussTechCore.blocks.AlcoholAlloyFurnace;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.util.ResourceLocation;
+import Morphesuss93.MorpheussTechCore.Reference;
 import Morphesuss93.MorpheussTechCore.blocks.AlloyFurnace.GUIAlloyFurnace;
 import Morphesuss93.MorpheussTechCore.blocks.AlloyFurnace.TileEntityAlloyFurnace;
 
 public class GUIAlcoholAlloyFurnace extends GUIAlloyFurnace{
 
 	private TileEntityAlcoholAlloyFurnace tileEntityAlcoholAlloyFurnace;
+	
+	private static final ResourceLocation furnaceGuiTexture =new ResourceLocation(Reference.MODID+":"+"textures/gui/container/AlcoholAlloyfurnace.png");
 	
 	public GUIAlcoholAlloyFurnace(InventoryPlayer invPlayer,
 			TileEntityAlcoholAlloyFurnace tile) {
@@ -19,9 +25,32 @@ public class GUIAlcoholAlloyFurnace extends GUIAlloyFurnace{
 		super.drawGuiContainerForegroundLayer(par1, par2);
 		if(this.tileEntityAlcoholAlloyFurnace instanceof TileEntityAlcoholAlloyFurnace){
 			String string="Alcohol "+((TileEntityAlcoholAlloyFurnace)tileEntityAlcoholAlloyFurnace).getTankAmount();
-			System.out.println("string "+string);
 			this.fontRendererObj.drawString(string, this.xSize/2 -this.fontRendererObj.getStringWidth(string), 60, 4210752);
 		}
+	}
+	
+	@Override
+	protected void drawGuiContainerBackgroundLayer(float var1, int var2, int var3) {
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		this.mc.getTextureManager().bindTexture(furnaceGuiTexture);
+		int k= (this.width - this.xSize)/2;
+		int l= (this.height - this.ySize)/2;
+		
+		this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
+		int i1;
+		
+		if(tileEntityAlcoholAlloyFurnace.isBurning()){
+			i1=tileEntityAlcoholAlloyFurnace.getBurnTimeRemaningScaled(12);
+			//System.out.println(i1);
+			//this.drawTexturedModalRect(k + 56, l + 36 + 12 - i1, 176, 12 - i1, 14, i1 + 2);
+			this.drawTexturedModalRect(k + 85, l + 56 + 12 - i1, 176, 12 - i1, 14, i1 + 2);
+		}
+		
+		i1=tileEntityAlcoholAlloyFurnace.getCookProgressScaled(24);//freccia
+		this.drawTexturedModalRect(k+79, l+34, 176, 14, i1+1,16);
+		
+		i1=tileEntityAlcoholAlloyFurnace.getTankScaled(55);
+		this.drawTexturedModalRect(k+143, l+5+(55-i1), 176, 33, 23,i1);
 	}
 
 }

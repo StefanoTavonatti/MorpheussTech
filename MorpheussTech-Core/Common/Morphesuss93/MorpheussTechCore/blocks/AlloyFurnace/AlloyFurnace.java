@@ -33,7 +33,7 @@ public class AlloyFurnace extends BlockContainer{
 	private IIcon front;
 	
 	
-	private static boolean isBurning;
+	protected static boolean isBurning;
 	private final boolean isBurning2;
 	private final Random random=new Random();
 	

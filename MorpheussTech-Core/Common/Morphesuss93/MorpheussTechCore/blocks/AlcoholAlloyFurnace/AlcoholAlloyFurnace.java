@@ -25,5 +25,26 @@ public class AlcoholAlloyFurnace extends AlloyFurnace{
 		player.openGui(Core.instance, 1, world, x, y, z);
 		return true;
 	}
+	
+	
+	public static void updateBlockStateAlcoholAlloyFurnace(boolean burning,World world,int x,int y,int z){
+		int direction =world.getBlockMetadata(x, y, z);
+		TileEntity tileentity=world.getTileEntity(x, y, z);
+		isBurning=true;
+		
+		if(burning){
+			world.setBlock(x, y, z, BlockHandler.alcoholAlloyFurnaceActive);
+		}else{
+			world.setBlock(x, y, z, BlockHandler.alcoholAlloyFurnace);
+		}
+		
+		isBurning=false;
+		
+		world.setBlockMetadataWithNotify(x, y, z, direction, 2);
+		if(tileentity !=null){
+			tileentity.validate();
+			world.setTileEntity(x, y, z, tileentity); 
+		}
+	}
 
 }
