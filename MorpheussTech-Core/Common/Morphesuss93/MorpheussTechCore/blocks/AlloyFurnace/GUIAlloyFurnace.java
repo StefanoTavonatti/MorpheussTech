@@ -29,10 +29,10 @@ public class GUIAlloyFurnace extends GuiContainer{
 		this.fontRendererObj.drawString(string, this.xSize/2 -this.fontRendererObj.getStringWidth(string), 6, 4210752);
 		this.fontRendererObj.drawString(I18n.format("container.inventory", new Object[0]), 8, this.ySize-94, 4210752);
 		//this.fontRendererObj.drawString("cur="+tileFurnace.currentBurnTime+" furnBurn="+tileFurnace.furnaceBurnTime+" coock="+tileFurnace.furnaceCookTime, this.xSize/2 -this.fontRendererObj.getStringWidth(string), 6, 4210752);
-		if(this.tileFurnace instanceof TileEntityAlcoholAlloyFurnace){
+		/*if(this.tileFurnace instanceof TileEntityAlcoholAlloyFurnace){
 			string="Alcohol "+((TileEntityAlcoholAlloyFurnace)tileFurnace).getTankAmount();
 			this.fontRendererObj.drawString(string, this.xSize/2 -this.fontRendererObj.getStringWidth(string), 60, 4210752);
-		}
+		}*/
 	}
 	
 	@Override
@@ -47,6 +47,7 @@ public class GUIAlloyFurnace extends GuiContainer{
 		
 		if(this.tileFurnace.isBurning()){
 			i1=this.tileFurnace.getBurnTimeRemaningScaled(12);
+			//System.out.println(i1);
 			//this.drawTexturedModalRect(k + 56, l + 36 + 12 - i1, 176, 12 - i1, 14, i1 + 2);
 			this.drawTexturedModalRect(k + 149, l + 42 + 12 - i1, 176, 12 - i1, 14, i1 + 2);
 		}

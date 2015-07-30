@@ -1,6 +1,9 @@
 package Morphesuss93.MorpheussTechCore.handler;
 
 import ibxm.Player;
+import Morphesuss93.MorpheussTechCore.blocks.AlcoholAlloyFurnace.ContainerAlcoholAlloyFurnace;
+import Morphesuss93.MorpheussTechCore.blocks.AlcoholAlloyFurnace.GUIAlcoholAlloyFurnace;
+import Morphesuss93.MorpheussTechCore.blocks.AlcoholAlloyFurnace.TileEntityAlcoholAlloyFurnace;
 import Morphesuss93.MorpheussTechCore.blocks.AlloyFurnace.ContainerAlloyFurnace;
 import Morphesuss93.MorpheussTechCore.blocks.AlloyFurnace.GUIAlloyFurnace;
 import Morphesuss93.MorpheussTechCore.blocks.AlloyFurnace.TileEntityAlloyFurnace;
@@ -17,6 +20,11 @@ public class MGuiHandler implements IGuiHandler{
 			TileEntityAlloyFurnace tileEntityFurnace =(TileEntityAlloyFurnace) world.getTileEntity(x, y, z);
 			return new GUIAlloyFurnace(player.inventory,tileEntityFurnace);
 		}
+		
+		if(ID==1){
+			TileEntityAlcoholAlloyFurnace tileEntityAlcoholAlloyFurnace=(TileEntityAlcoholAlloyFurnace) world.getTileEntity(x, y, z);
+			return new GUIAlcoholAlloyFurnace(player.inventory, tileEntityAlcoholAlloyFurnace);
+		}
 		return null;
 	}
 
@@ -26,6 +34,11 @@ public class MGuiHandler implements IGuiHandler{
 		if(ID==0){
 			TileEntityAlloyFurnace tileEntityFurnace =(TileEntityAlloyFurnace) world.getTileEntity(x, y, z);
 			return new ContainerAlloyFurnace(player.inventory,tileEntityFurnace);
+		}
+		
+		if(ID==1){
+			TileEntityAlcoholAlloyFurnace tileEntityAlcoholAlloyFurnace=(TileEntityAlcoholAlloyFurnace) world.getTileEntity(x,y, z);
+			return new ContainerAlcoholAlloyFurnace(player.inventory, tileEntityAlcoholAlloyFurnace);
 		}
 		return null;
 	}
