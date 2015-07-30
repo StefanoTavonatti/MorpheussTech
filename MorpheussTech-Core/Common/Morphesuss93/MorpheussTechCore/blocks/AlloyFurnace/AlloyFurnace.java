@@ -220,7 +220,7 @@ public class AlloyFurnace extends BlockContainer{
 		isBurning=true;
 		
 		if(burning){
-			world.setBlock(x, y, z, BlockHandler.AlloyFurnaceActive);
+			world.setBlock(x, y, z, BlockHandler.AlloyFurnaceActive);//TODO cambiare con blocco generico
 		}else{
 			world.setBlock(x, y, z, BlockHandler.AlloyFurnace);
 		}

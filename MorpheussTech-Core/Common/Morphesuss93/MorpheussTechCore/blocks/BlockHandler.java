@@ -23,6 +23,8 @@ import Morphesuss93.MorpheussTechCore.blocks.ore.SilverOre;
 import Morphesuss93.MorpheussTechCore.blocks.ore.TinOre;
 import Morphesuss93.MorpheussTechCore.fluids.AlcoholBlock;
 import Morphesuss93.MorpheussTechCore.items.ItemsHandler;
+import Morphesuss93.MorpheussTechCore.blocks.AlcoholAlloyFurnace.AlcoholAlloyFurnace;
+import Morphesuss93.MorpheussTechCore.blocks.AlcoholAlloyFurnace.TileEntityAlcoholAlloyFurnace;
 import Morphesuss93.MorpheussTechCore.blocks.AlloyFurnace.*;
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -36,6 +38,7 @@ public class BlockHandler {
 	public static Block AlloyFurnaceActive;
 	public static Fluid alcohol = new Fluid("Alcohol");
 	public static AlcoholBlock alcoholBlock;
+	public static AlcoholAlloyFurnace alcoholAlloyFurnace,alcoholAlloyFurnaceActive;
 	
 	public static void configureBlock(Configuration config)
 	{
@@ -71,7 +74,10 @@ public class BlockHandler {
 		GameRegistry.registerBlock(alcoholBlock, Reference.MODID + "_" + alcoholBlock.getUnlocalizedName().substring(5));
 		alcohol.setUnlocalizedName(alcoholBlock.getUnlocalizedName());
 		
-		
+		alcoholAlloyFurnace=(AlcoholAlloyFurnace) new AlcoholAlloyFurnace(false).setBlockName("AlcoholAlloyFurnace");
+		alcoholAlloyFurnaceActive=(AlcoholAlloyFurnace) new AlcoholAlloyFurnace(true).setBlockName("AlcoholAlloyFurnaceActive");
+		GameRegistry.registerBlock(alcoholAlloyFurnace, Reference.MODID+"_"+alcoholAlloyFurnace.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(alcoholAlloyFurnaceActive, Reference.MODID+"_"+alcoholAlloyFurnaceActive.getUnlocalizedName().substring(5));
 		
 		
 	}
@@ -100,6 +106,7 @@ public class BlockHandler {
 	public static void configureTile()
 	{
 		GameRegistry.registerTileEntity(TileEntityAlloyFurnace.class, Reference.MODID+"TileEntityAlloyFurnace");
+		GameRegistry.registerTileEntity(TileEntityAlcoholAlloyFurnace.class, Reference.MODID+"TileEntityAlcoholAlloyFurnace");
 	}
 
 }

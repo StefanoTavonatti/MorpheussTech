@@ -6,6 +6,7 @@ tile.Silver Ore.name=Silver Ore
 tile.Aluminium Ore.name=Aluminium Ore
 tile.AlloyFurnace.name=Alloy Furnace
 tile.Alcohol.name=Alcohol
+tile.AlcoholAlloyFurnace.name=Alcohol Powered Alloy Furnace
 
 item.Copper Ingot.name=Copper Ingot
 item.Aluminium Ingot.name=Aluminium Ingot

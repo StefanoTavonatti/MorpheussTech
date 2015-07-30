@@ -3,6 +3,7 @@ package Morphesuss93.MorpheussTechCore.blocks.AlloyFurnace;
 import org.lwjgl.opengl.GL11;
 
 import Morphesuss93.MorpheussTechCore.Reference;
+import Morphesuss93.MorpheussTechCore.blocks.AlcoholAlloyFurnace.TileEntityAlcoholAlloyFurnace;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -28,7 +29,10 @@ public class GUIAlloyFurnace extends GuiContainer{
 		this.fontRendererObj.drawString(string, this.xSize/2 -this.fontRendererObj.getStringWidth(string), 6, 4210752);
 		this.fontRendererObj.drawString(I18n.format("container.inventory", new Object[0]), 8, this.ySize-94, 4210752);
 		//this.fontRendererObj.drawString("cur="+tileFurnace.currentBurnTime+" furnBurn="+tileFurnace.furnaceBurnTime+" coock="+tileFurnace.furnaceCookTime, this.xSize/2 -this.fontRendererObj.getStringWidth(string), 6, 4210752);
-
+		if(this.tileFurnace instanceof TileEntityAlcoholAlloyFurnace){
+			string="Alcohol "+((TileEntityAlcoholAlloyFurnace)tileFurnace).getTankAmount();
+			this.fontRendererObj.drawString(string, this.xSize/2 -this.fontRendererObj.getStringWidth(string), 60, 4210752);
+		}
 	}
 	
 	@Override
