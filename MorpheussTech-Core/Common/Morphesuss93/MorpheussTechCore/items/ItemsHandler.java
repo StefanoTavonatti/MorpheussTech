@@ -1,6 +1,7 @@
 package Morphesuss93.MorpheussTechCore.items;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import Morphesuss93.MorpheussTechCore.Core;
 import Morphesuss93.MorpheussTechCore.Reference;
 import Morphesuss93.MorpheussTechCore.blocks.BlockHandler;
 import Morphesuss93.MorpheussTechCore.fluids.BucketHandler;
@@ -59,6 +60,7 @@ public class ItemsHandler {
 		OreDictionary.registerOre("ingotSteel", steelIngot);
 		
 		alcoholBucket = new ItemBucket(BlockHandler.alcoholBlock).setUnlocalizedName("AlcoholBucket").setContainerItem(Items.bucket).setTextureName(Reference.MODID+":"+"AlcoholBucket");
+		alcoholBucket.setCreativeTab(Core.tabCore);
 		GameRegistry.registerItem(alcoholBucket, Reference.MODID+"_"+"AlcoholBucket");
 		FluidContainerRegistry.registerFluidContainer(BlockHandler.alcohol,new ItemStack(alcoholBucket),new ItemStack(Items.bucket));
 		//gestisco l'evento del fluido che viene raccolto

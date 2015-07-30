@@ -67,7 +67,7 @@ public class BlockHandler {
 		GameRegistry.registerBlock(AlloyFurnaceActive, Reference.MODID+"-"+AlloyFurnaceActive.getUnlocalizedName().substring(5));
 	
 		
-		
+		//TODO fluidIcons
 		FluidRegistry.registerFluid(alcohol);
 		alcoholBlock = new AlcoholBlock(alcohol, Material.water);
 		alcoholBlock.setBlockName("Alcohol");

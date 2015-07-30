@@ -1,5 +1,6 @@
 package Morphesuss93.MorpheussTechCore.blocks.AlloyFurnace;
 
+import Morphesuss93.MorpheussTechCore.blocks.AlcoholAlloyFurnace.TileEntityAlcoholAlloyFurnace;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
@@ -76,6 +77,7 @@ public class ContainerAlloyFurnace extends Container{
 	
 	@SideOnly(Side.CLIENT)
 	public void updateProgressBar(int par1,int par2){
+		//System.out.println("par3 "+par1);
 		if(par1==0){
 			this.tileFurnace.furnaceCookTime=par2;
 		}
@@ -87,6 +89,12 @@ public class ContainerAlloyFurnace extends Container{
 		if(par1==2){
 			this.tileFurnace.currentBurnTime=par2;
 		}
+		
+		/*if(this.tileFurnace instanceof TileEntityAlcoholAlloyFurnace){
+			TileEntityAlcoholAlloyFurnace tileEntityAlcoholAlloyFurnace=(TileEntityAlcoholAlloyFurnace) this.tileFurnace;
+			if(par1==3)
+				this.tileFurnace.currentBurnTime=par2;
+		}*/
 	}
 	
 	@Override

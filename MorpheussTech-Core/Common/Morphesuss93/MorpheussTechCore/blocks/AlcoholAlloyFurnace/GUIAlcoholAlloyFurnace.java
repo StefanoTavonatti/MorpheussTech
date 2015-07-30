@@ -38,7 +38,7 @@ public class GUIAlcoholAlloyFurnace extends GUIAlloyFurnace{
 		
 		this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
 		int i1;
-		
+		//System.out.println("ClientSide "+tileEntityAlcoholAlloyFurnace.getTankAmount());
 		if(tileEntityAlcoholAlloyFurnace.isBurning()){
 			i1=tileEntityAlcoholAlloyFurnace.getBurnTimeRemaningScaled(12);
 			//System.out.println(i1);

@@ -32,18 +32,19 @@ public class ContainerAlcoholAlloyFurnace extends ContainerAlloyFurnace{
 			ICrafting craft= (ICrafting)this.crafters.get(i);
 			
 			if(this.fluidAmount!=tileEntityAlcoholAlloyFurnace.getTankAmount()){
+				System.out.println("fluidAm "+this.fluidAmount+" tile "+tileEntityAlcoholAlloyFurnace.getTankAmount()); 
 				craft.sendProgressBarUpdate(this, 3, tileEntityAlcoholAlloyFurnace.getTankAmount());
 			}
 		}
-		//System.out.println("Container "+this.fluidAmount);
+		//System.out.println("Container "+tileEntityAlcoholAlloyFurnace.getTankAmount()); 
 		this.fluidAmount=tileEntityAlcoholAlloyFurnace.getTankAmount();
 	}
 	
-	@Override
+	
 	@SideOnly(Side.CLIENT)
 	public void updateProgressBar(int par1,int par2){
+		System.out.println("quiiiiiiii222");
 		super.updateProgressBar(par1, par2);
-		
 		if(par1==3){
 			tileEntityAlcoholAlloyFurnace.setTankAmount(par2);
 		}

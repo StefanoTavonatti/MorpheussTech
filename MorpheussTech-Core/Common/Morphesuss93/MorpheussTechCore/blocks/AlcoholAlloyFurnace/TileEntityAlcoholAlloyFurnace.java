@@ -26,7 +26,7 @@ public class TileEntityAlcoholAlloyFurnace extends TileEntityAlloyFurnace implem
 	public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
 		// TODO Auto-generated method stub
 		int ft=tank.fill(resource, doFill);;
-		fluidAmount=5;
+		fluidAmount=tank.getFluidAmount();
 		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 		this.markDirty();
 		return ft;
@@ -39,6 +39,7 @@ public class TileEntityAlcoholAlloyFurnace extends TileEntityAlloyFurnace implem
         {
             return null;
         }
+		fluidAmount=tank.getFluidAmount();
 		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 		this.markDirty();
         return tank.drain(resource.amount, doDrain);
@@ -46,9 +47,11 @@ public class TileEntityAlcoholAlloyFurnace extends TileEntityAlloyFurnace implem
 
 	@Override
 	public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
+		FluidStack res=tank.drain(maxDrain, doDrain);
+		fluidAmount=tank.getFluidAmount();
 		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 		this.markDirty();
-		return tank.drain(maxDrain, doDrain);
+		return res;
 	}
 
 	@Override
@@ -85,8 +88,8 @@ public class TileEntityAlcoholAlloyFurnace extends TileEntityAlloyFurnace implem
     public int getTankAmount()
     {
     	
-    	//return this.fluidAmount;
-    	return tank.getFluidAmount();
+    	return this.fluidAmount;
+    	//return tank.getFluidAmount();
     }
     
     public FluidTank getTank(){
@@ -105,7 +108,11 @@ public class TileEntityAlcoholAlloyFurnace extends TileEntityAlloyFurnace implem
     }
     
     public void useFuel(int quantity){
+    	fluidAmount-=quantity;
+    	System.out.println("amoun "+fluidAmount+" "+worldObj.isRemote);
     	tank.drain(quantity, true);
+    	worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+		this.markDirty();
     }
     
     @SideOnly(Side.CLIENT)
@@ -137,9 +144,9 @@ public class TileEntityAlcoholAlloyFurnace extends TileEntityAlloyFurnace implem
 			--this.furnaceBurnTime;
 		}
 		
-		if(!this.worldObj.isRemote){
+		//if(!this.worldObj.isRemote){
 			if(this.furnaceBurnTime==0 && this.canSmelt()){
-				if(this.getTankAmount()>=100)//Quantità di alcohol necessaria alla cottura
+				if(this.getTankAmount()>=200)//Quantità di alcohol necessaria alla cottura
 					this.currentBurnTime=this.furnaceBurnTime=200;
 				else
 					this.currentBurnTime=this.furnaceBurnTime=0;
@@ -160,7 +167,7 @@ public class TileEntityAlcoholAlloyFurnace extends TileEntityAlloyFurnace implem
 			}else{
 				this.furnaceCookTime=0;
 			}
-		}
+		//}
 		
 		if(flag !=this.furnaceBurnTime>0){
 			flag1=true;
