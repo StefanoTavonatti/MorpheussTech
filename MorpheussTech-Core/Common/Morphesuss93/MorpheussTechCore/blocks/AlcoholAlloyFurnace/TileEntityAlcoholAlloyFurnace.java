@@ -1,8 +1,11 @@
 package Morphesuss93.MorpheussTechCore.blocks.AlcoholAlloyFurnace;
 
+import cpw.mods.fml.common.asm.transformers.ItemStackTransformer;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemBucket;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
@@ -17,6 +20,7 @@ import net.minecraftforge.fluids.IFluidHandler;
 import Morphesuss93.MorpheussTechCore.blocks.BlockHandler;
 import Morphesuss93.MorpheussTechCore.blocks.AlloyFurnace.AlloyFurnace;
 import Morphesuss93.MorpheussTechCore.blocks.AlloyFurnace.TileEntityAlloyFurnace;
+import Morphesuss93.MorpheussTechCore.items.ItemsHandler;
 
 public class TileEntityAlcoholAlloyFurnace extends TileEntityAlloyFurnace implements IFluidHandler{
 	
@@ -119,6 +123,13 @@ public class TileEntityAlcoholAlloyFurnace extends TileEntityAlloyFurnace implem
 		this.markDirty();
     }
     
+    public void addFuel(int quantity){
+    	fluidAmount+=quantity;
+    	tank.fill(new FluidStack(BlockHandler.alcohol, quantity), true);
+    	worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+		this.markDirty();
+    }
+    
     @SideOnly(Side.CLIENT)
 	public int getTankScaled(int levelMax){
 		return this.getTankAmount()*levelMax/tank.getCapacity();
@@ -143,6 +154,16 @@ public class TileEntityAlcoholAlloyFurnace extends TileEntityAlloyFurnace implem
     public void updateEntity(){//TODO, riempire da sechhio slot 9
 		boolean flag=this.furnaceBurnTime>0;
 		boolean flag1=false;
+		
+		if(this.furnaceItemStacks[9]!=null){
+			ItemStack itemStack=this.furnaceItemStacks[9];
+			if(itemStack.getItem()==ItemsHandler.alcoholBucket){
+				if(this.getTankAmount()<=tank.getCapacity()-1000){
+					this.addFuel(1000);
+					this.furnaceItemStacks[9]=new ItemStack(((ItemBucket)itemStack.getItem()).getContainerItem());
+				}
+			}
+		}
 		
 		if(this.furnaceBurnTime>0){
 			--this.furnaceBurnTime;

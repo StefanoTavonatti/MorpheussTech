@@ -24,8 +24,8 @@ public class GUIAlcoholAlloyFurnace extends GUIAlloyFurnace{
 	protected void drawGuiContainerForegroundLayer(int par1,int par2){
 		super.drawGuiContainerForegroundLayer(par1, par2);
 		if(this.tileEntityAlcoholAlloyFurnace instanceof TileEntityAlcoholAlloyFurnace){
-			String string="Alcohol "+((TileEntityAlcoholAlloyFurnace)tileEntityAlcoholAlloyFurnace).getTankAmount();
-			this.fontRendererObj.drawString(string, this.xSize/2 -this.fontRendererObj.getStringWidth(string), 60, 4210752);
+			/*String string="Alcohol "+((TileEntityAlcoholAlloyFurnace)tileEntityAlcoholAlloyFurnace).getTankAmount();
+			this.fontRendererObj.drawString(string, this.xSize/2 -this.fontRendererObj.getStringWidth(string), 60, 4210752);*/
 		}
 	}
 	
@@ -38,11 +38,10 @@ public class GUIAlcoholAlloyFurnace extends GUIAlloyFurnace{
 		
 		this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
 		int i1;
-		//System.out.println("ClientSide "+tileEntityAlcoholAlloyFurnace.getTankAmount());
+		
 		if(tileEntityAlcoholAlloyFurnace.isBurning()){
 			i1=tileEntityAlcoholAlloyFurnace.getBurnTimeRemaningScaled(12);
-			//System.out.println(i1);
-			//this.drawTexturedModalRect(k + 56, l + 36 + 12 - i1, 176, 12 - i1, 14, i1 + 2);
+			
 			this.drawTexturedModalRect(k + 85, l + 56 + 12 - i1, 176, 12 - i1, 14, i1 + 2);
 		}
 		
@@ -51,6 +50,8 @@ public class GUIAlcoholAlloyFurnace extends GUIAlloyFurnace{
 		
 		i1=tileEntityAlcoholAlloyFurnace.getTankScaled(55);
 		this.drawTexturedModalRect(k+143, l+5+(55-i1), 176, 33, 23,i1);
+		
+		this.drawTexturedModalRect(k+144,l+8, 176, 88, 21, 50);
 	}
 
 }

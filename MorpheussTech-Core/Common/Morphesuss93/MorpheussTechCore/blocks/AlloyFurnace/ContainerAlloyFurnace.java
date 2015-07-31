@@ -14,35 +14,48 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 
 public class ContainerAlloyFurnace extends Container{
 
-	private TileEntityAlloyFurnace tileFurnace;
+	protected TileEntityAlloyFurnace tileFurnace;
 	private int lastCookTime;
 	private int lastBurnTime;
 	private int lastItemBurnTime;
+	protected int xFuel=148;
+	protected int yFuel=58;
 	
 	public ContainerAlloyFurnace(InventoryPlayer player, TileEntityAlloyFurnace tileEntityFurnace) {
 		this.tileFurnace=tileEntityFurnace;
+		
 		//this.addSlotToContainer(new Slot(tileEntityFurnace,0,56,17));//position of slot
-		this.addSlotToContainer(new Slot(tileEntityFurnace,9,148,58));//combustibile prima 1
-		this.addSlotToContainer(new SlotFurnace(player.player,tileEntityFurnace,10,116,35));//risultato
-		int i;
-		
-		for(int n=0;n<3;n++)
-		{
-			for(int m=0;m<3;m++)
+		/*if(!(tileEntityFurnace instanceof TileEntityAlcoholAlloyFurnace))
+		{*/
+			if(!(tileEntityFurnace instanceof TileEntityAlcoholAlloyFurnace))
+				this.addSlotToContainer(new Slot(tileEntityFurnace,9,xFuel,yFuel));//combustibile prima 1
+			else
+				this.addSlotToContainer(new Slot(tileEntityFurnace,9,147,63));
+			this.addSlotToContainer(new SlotFurnace(player.player,tileEntityFurnace,10,116,35));//risultato
+			int i;
+			
+			for(int n=0;n<3;n++)
 			{
-				this.addSlotToContainer(new Slot(tileEntityFurnace,m+n*3,22+18*(m),18+17*n));
+				for(int m=0;m<3;m++)
+				{
+					this.addSlotToContainer(new Slot(tileEntityFurnace,m+n*3,22+18*(m),18+17*n));
+				}
 			}
-		}
-		
-		for(i=0;i<3;++i){
-			for(int j=0;j<9;++j){
-				this.addSlotToContainer(new Slot(player,j+i*9+9,8+j*18,84+i*18));
+			
+			for(i=0;i<3;++i){
+				for(int j=0;j<9;++j){
+					this.addSlotToContainer(new Slot(player,j+i*9+9,8+j*18,84+i*18));
+				}
 			}
-		}
-		
-		for(i=0;i<9;++i){
-			this.addSlotToContainer(new Slot(player,i, 8+i*18,142));
-		}
+			
+			for(i=0;i<9;++i){
+				this.addSlotToContainer(new Slot(player,i, 8+i*18,142));
+			}
+		//}
+	}
+	
+	public ContainerAlloyFurnace(TileEntityAlcoholAlloyFurnace tileEntityFurnace){
+		this.tileFurnace=tileEntityFurnace;
 	}
 	
 	public void addCraftingToCrafters(ICrafting craft){
