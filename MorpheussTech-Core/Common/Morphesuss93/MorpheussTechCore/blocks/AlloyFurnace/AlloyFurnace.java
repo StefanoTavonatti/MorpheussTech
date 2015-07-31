@@ -27,14 +27,14 @@ import net.minecraft.world.World;
 public class AlloyFurnace extends BlockContainer{
 
 	@SideOnly(Side.CLIENT)
-	private IIcon top;
+	protected IIcon top;
 	
 	@SideOnly(Side.CLIENT)
-	private IIcon front;
+	protected IIcon front;
 	
 	
 	protected static boolean isBurning;
-	private final boolean isBurning2;
+	protected final boolean isBurning2;
 	private final Random random=new Random();
 	
 	public AlloyFurnace(boolean isActive) {

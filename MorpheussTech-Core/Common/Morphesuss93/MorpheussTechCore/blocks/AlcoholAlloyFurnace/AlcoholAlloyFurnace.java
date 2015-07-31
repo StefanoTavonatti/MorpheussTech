@@ -1,9 +1,13 @@
 package Morphesuss93.MorpheussTechCore.blocks.AlcoholAlloyFurnace;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import Morphesuss93.MorpheussTechCore.Core;
+import Morphesuss93.MorpheussTechCore.Reference;
 import Morphesuss93.MorpheussTechCore.blocks.BlockHandler;
 import Morphesuss93.MorpheussTechCore.blocks.AlloyFurnace.AlloyFurnace;
 import Morphesuss93.MorpheussTechCore.blocks.AlloyFurnace.TileEntityAlloyFurnace;
@@ -26,6 +30,12 @@ public class AlcoholAlloyFurnace extends AlloyFurnace{
 		return true;
 	}
 	
+	@SideOnly(Side.CLIENT)
+	public void registerBlockIcons(IIconRegister iconregister){
+		this.blockIcon=iconregister.registerIcon(Reference.MODID+":AlcoholAlloyFurnaceSide");
+		this.front=iconregister.registerIcon(this.isBurning2 ? Reference.MODID+":AlcoholAlloyFurnaceActive" : Reference.MODID+":AlcoholAlloyFurnace");
+		this.top=iconregister.registerIcon(Reference.MODID+":AlloyFurnaceTop");
+	}
 	
 	public static void updateBlockStateAlcoholAlloyFurnace(boolean burning,World world,int x,int y,int z){
 		int direction =world.getBlockMetadata(x, y, z);

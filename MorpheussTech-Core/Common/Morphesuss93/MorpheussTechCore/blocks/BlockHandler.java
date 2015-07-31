@@ -7,6 +7,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBucket;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
@@ -68,11 +69,14 @@ public class BlockHandler {
 	
 		
 		//TODO fluidIcons
+		
 		FluidRegistry.registerFluid(alcohol);
 		alcoholBlock = new AlcoholBlock(alcohol, Material.water);
 		alcoholBlock.setBlockName("Alcohol");
+		//alcohol.setIcons(alcoholBlock.getStillIcon(), alcoholBlock.getFlowIcon());
 		GameRegistry.registerBlock(alcoholBlock, Reference.MODID + "_" + alcoholBlock.getUnlocalizedName().substring(5));
 		alcohol.setUnlocalizedName(alcoholBlock.getUnlocalizedName());
+		
 		
 		alcoholAlloyFurnace=(AlcoholAlloyFurnace) new AlcoholAlloyFurnace(false).setBlockName("AlcoholAlloyFurnace");
 		alcoholAlloyFurnaceActive=(AlcoholAlloyFurnace) new AlcoholAlloyFurnace(true).setBlockName("AlcoholAlloyFurnaceActive");

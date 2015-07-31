@@ -18,10 +18,11 @@ public class AlcoholBlock extends BlockFluidClassic{
     @SideOnly(Side.CLIENT)
     protected IIcon flowingIcon;
     
+    protected Fluid alcohol;
+    
 	public AlcoholBlock(Fluid fluid, Material material) {
 		super(fluid, material);
-		//this.setBlockTextureName(Reference.MODID+":"+"AlcoholStill");
-		// TODO Auto-generated constructor stub
+		alcohol=fluid;
 	}
 	
     
@@ -35,6 +36,8 @@ public class AlcoholBlock extends BlockFluidClassic{
     public void registerBlockIcons(IIconRegister register) {
             stillIcon = register.registerIcon(Reference.MODID+":"+"AlcoholStill");
             flowingIcon = register.registerIcon(Reference.MODID+":"+"AlcoholFlowing");
+            alcohol.setIcons(stillIcon);
+            
     }
     
     @Override
@@ -47,6 +50,14 @@ public class AlcoholBlock extends BlockFluidClassic{
     public boolean displaceIfPossible(World world, int x, int y, int z) {
             if (world.getBlock(x,  y,  z).getMaterial().isLiquid()) return false;
             return super.displaceIfPossible(world, x, y, z);
+    }
+    
+    public IIcon getStillIcon(){
+    	return stillIcon;
+    }
+    
+    public IIcon getFlowIcon(){
+    	return flowingIcon;
     }
 
 }

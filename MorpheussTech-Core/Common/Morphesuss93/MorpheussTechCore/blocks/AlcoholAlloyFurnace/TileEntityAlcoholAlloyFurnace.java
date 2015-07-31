@@ -14,6 +14,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
+import Morphesuss93.MorpheussTechCore.blocks.BlockHandler;
 import Morphesuss93.MorpheussTechCore.blocks.AlloyFurnace.AlloyFurnace;
 import Morphesuss93.MorpheussTechCore.blocks.AlloyFurnace.TileEntityAlloyFurnace;
 
@@ -24,12 +25,15 @@ public class TileEntityAlcoholAlloyFurnace extends TileEntityAlloyFurnace implem
 
 	@Override
 	public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
-		// TODO Auto-generated method stub
-		int ft=tank.fill(resource, doFill);;
-		fluidAmount=tank.getFluidAmount();
-		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-		this.markDirty();
-		return ft;
+		if(resource.getFluid()==BlockHandler.alcohol)
+		{
+			int ft=tank.fill(resource, doFill);;
+			fluidAmount=tank.getFluidAmount();
+			worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+			this.markDirty();
+			return ft;
+		}
+		return 0;
 	}
 
 	@Override
@@ -56,12 +60,13 @@ public class TileEntityAlcoholAlloyFurnace extends TileEntityAlloyFurnace implem
 
 	@Override
 	public boolean canFill(ForgeDirection from, Fluid fluid) {
-		return true;
+		return fluid==BlockHandler.alcohol;
+		//return true;
 	}
 
 	@Override
 	public boolean canDrain(ForgeDirection from, Fluid fluid) {
-		return true;
+		return false;
 	}
 
 	@Override
