@@ -47,6 +47,7 @@ public class Core {
 		config.load();
 		BlockHandler.configureBlock(config);
 		ItemsHandler.configureItems(config);
+		ItemsHandler.configureRecipe();
 		
 		BlockHandler.configureRecipes();
 		BlockHandler.configureTile();

@@ -92,5 +92,7 @@ public class ItemsHandler {
 		
 		GameRegistry.addShapedRecipe(new ItemStack(cottonCloth,1), new Object[]{"sss","sss","sss",'s',Items.string});
 		GameRegistry.addShapedRecipe(new ItemStack(fishingNet), new Object[]{"scs","scs","scs",'s',Items.stick,'c',cottonCloth});
+		
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Morphesuss93.MorpheussTechCore.items.ItemsHandler.smallAlcoholBurnerComponent), true, new Object[]{"scs","scs","sbs",'s',"ingotBronze",'b',Items.bucket,'c',cottonCloth}));
 	}
 }
