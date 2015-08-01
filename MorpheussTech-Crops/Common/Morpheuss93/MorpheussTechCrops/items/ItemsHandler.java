@@ -14,6 +14,7 @@ import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import cpw.mods.fml.common.registry.GameRegistry;
 import Morphesuss93.MorpheussTechCore.Materials;
+import Morphesuss93.MorpheussTechCore.blocks.AlloyFurnace.AlloyFurnaceRecipes;
 import Morpheuss93.MorpheussTechCrops.Reference;
 import Morpheuss93.MorpheussTechCrops.CraftingManager.ShaplessRecipeDamages;
 import Morpheuss93.MorpheussTechCrops.food.FoodHandler;
@@ -94,5 +95,6 @@ public class ItemsHandler {
 		GameRegistry.addShapedRecipe(new ItemStack(fishingNet), new Object[]{"scs","scs","scs",'s',Items.stick,'c',cottonCloth});
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Morphesuss93.MorpheussTechCore.items.ItemsHandler.smallAlcoholBurnerComponent), true, new Object[]{"scs","scs","sbs",'s',"ingotBronze",'b',Items.bucket,'c',cottonCloth}));
+		
 	}
 }

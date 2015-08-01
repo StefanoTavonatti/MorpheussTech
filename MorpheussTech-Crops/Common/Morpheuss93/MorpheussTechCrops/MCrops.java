@@ -1,5 +1,8 @@
 package Morpheuss93.MorpheussTechCrops;
 
+import java.util.ArrayList;
+
+import Morphesuss93.MorpheussTechCore.blocks.AlloyFurnace.AlloyFurnaceRecipes;
 import Morpheuss93.MorpheussTechCrops.blocks.BlockHandler;
 import Morpheuss93.MorpheussTechCrops.crops.CropsHandler;
 import Morpheuss93.MorpheussTechCrops.food.FoodHandler;
@@ -9,6 +12,7 @@ import Morpheuss93.MorpheussTechCrops.seed.SeedHandler;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
