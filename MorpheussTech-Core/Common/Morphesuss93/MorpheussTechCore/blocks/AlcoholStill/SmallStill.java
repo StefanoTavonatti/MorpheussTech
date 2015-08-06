@@ -5,19 +5,16 @@ import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class AlcoholStillController extends BlockContainer{
-	
-	boolean isActive;
+public class SmallStill extends BlockContainer{
 
-	protected AlcoholStillController(boolean isActive) {
+	protected SmallStill() {
 		super(Material.rock);
-		this.isActive=isActive;
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
-		// TODO Auto-generated method stub
-		return new TileEntityAlcoholStillController(true);
+		return new TileEntityAlcoholStillController(false);
 	}
 
 }
