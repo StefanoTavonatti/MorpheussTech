@@ -41,10 +41,12 @@ public class TileEntityAlcoholStillController extends TileEntity implements ISid
 	public int furnaceCookTime;
 	
 	public boolean multiblock;
-	protected ItemStack stillItemStacks[]=new ItemStack[4];
+	protected ItemStack stillItemStacks[]=new ItemStack[4];//3 fuel
 	protected FluidTank watherTank = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME*2);
 	protected FluidTank lavaTank = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME*2); 
 	protected FluidTank resultTank = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME*2);
+	
+	private static int lavaCost=20;
 	 
 	private String stillName;
 	
@@ -305,7 +307,16 @@ public class TileEntityAlcoholStillController extends TileEntity implements ISid
 		
 		if(!this.worldObj.isRemote){
 			if(this.furnaceBurnTime==0 && this.canSmelt()){
-				this.currentBurnTime=this.furnaceBurnTime=getItemBurnTime(this.stillItemStacks[9]);
+				if(watherTank.getFluidAmount()>=200 && lavaTank.getFluidAmount()>=lavaCost){
+					int time=200;
+					if(multiblock){
+						time=50;
+					}else{
+						time=200;
+					}
+					
+					this.currentBurnTime=this.furnaceBurnTime=time;
+				}
 				
 				if(this.furnaceBurnTime>0){
 					flag1=true;
@@ -342,7 +353,13 @@ public class TileEntityAlcoholStillController extends TileEntity implements ISid
 	}
     
     protected boolean canSmelt(){
-    	return false;
+    	if(!(watherTank.getFluidAmount()>=1000))
+    		return false;
+    	if(multiblock && lavaTank.getFluidAmount()<lavaCost)
+    		return false;
+    	//if(!multiblock && !(lavaTank.getFluidAmount()<lavaCost || stillItemStacks[3].getItem()!=null )) //TODO controllare elementi//TODO using ItemBurnTime and is Itemfuel
+    	
+    	return true;
     }
     
 	public void smeltItem(){
@@ -405,6 +422,14 @@ public class TileEntityAlcoholStillController extends TileEntity implements ISid
 			return GameRegistry.getFuelValue(itemstack);
 			
 		}
+	}
+	
+	public boolean isItemFuel(Item item){
+		return true;//TODO sistemare
+	}
+	
+	public int getItemBurnTime(Item item){
+		return 0;
 	}
     
 }

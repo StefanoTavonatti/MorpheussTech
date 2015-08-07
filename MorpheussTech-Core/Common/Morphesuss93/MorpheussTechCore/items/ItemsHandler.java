@@ -13,6 +13,7 @@ import Morphesuss93.MorpheussTechCore.items.components.Smalligniter;
 import Morphesuss93.MorpheussTechCore.items.ingot.*;
 import Morphesuss93.MorpheussTechCore.items.ingot.alloy.BrassIngot;
 import Morphesuss93.MorpheussTechCore.items.ingot.alloy.BronzeIngot;
+import Morphesuss93.MorpheussTechCore.items.misc.Biomass;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -39,6 +40,7 @@ public class ItemsHandler {
 	public static SmallAlcoholBurnerSupport smallAlcoholBurnerSupport;
 	public static Smalligniter smalligniter;
 	public static SmallAlcoholBurner smallAlcoholBurner;
+	public static Biomass biomass;
 	
 	
 	public static void configureItems(Configuration config){
@@ -89,6 +91,9 @@ public class ItemsHandler {
 		
 		smallAlcoholBurner=new SmallAlcoholBurner();
 		GameRegistry.registerItem(smallAlcoholBurner, smallAlcoholBurner.getUnlocalizedName().substring(5));
+		
+		biomass=new Biomass();
+		GameRegistry.registerItem(biomass, biomass.getUnlocalizedName().substring(5));
 		
 		
 	}
