@@ -3,8 +3,10 @@ package Morphesuss93.MorpheussTechCore.blocks.AlcoholStill;
 import java.util.ArrayList;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import Morphesuss93.MorpheussTechCore.blocks.BlockHandler;
 import Morphesuss93.MorpheussTechCore.blocks.AlloyFurnace.AlloyFurnace;
 import Morphesuss93.MorpheussTechCore.blocks.AlloyFurnace.AlloyFurnaceRecipes;
+import Morphesuss93.MorpheussTechCore.items.ItemsHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -307,7 +309,7 @@ public class TileEntityAlcoholStillController extends TileEntity implements ISid
 		
 		if(!this.worldObj.isRemote){
 			if(this.furnaceBurnTime==0 && this.canSmelt()){
-				if(watherTank.getFluidAmount()>=200 && lavaTank.getFluidAmount()>=lavaCost){
+				//if(watherTank.getFluidAmount()>=200 && lavaTank.getFluidAmount()>=lavaCost){
 					int time=200;
 					if(multiblock){
 						time=50;
@@ -316,17 +318,25 @@ public class TileEntityAlcoholStillController extends TileEntity implements ISid
 					}
 					
 					this.currentBurnTime=this.furnaceBurnTime=time;
-				}
+				//}
 				
 				if(this.furnaceBurnTime>0){
 					flag1=true;
-					if(this.stillItemStacks[9]!=null){
-						--this.stillItemStacks[9].stackSize;
+					if(this.stillItemStacks[3]!=null){
+						if(lavaTank.getFluidAmount()<lavaCost)
+						{
+							--this.stillItemStacks[3].stackSize;
+							if(this.stillItemStacks[3].stackSize==0){
+								this.stillItemStacks[3]=stillItemStacks[3].getItem().getContainerItem(this.stillItemStacks[9]);
+							}
+						}
+						else
+						{
+							lavaTank.setFluid(new FluidStack(lavaTank.getFluid(), lavaTank.getFluidAmount()-lavaCost));
+						}
 					}
 					
-					if(this.stillItemStacks[9].stackSize==0){
-						this.stillItemStacks[9]=stillItemStacks[9].getItem().getContainerItem(this.stillItemStacks[9]);
-					}
+					
 				}
 			}
 			
@@ -344,7 +354,8 @@ public class TileEntityAlcoholStillController extends TileEntity implements ISid
 		
 		if(flag !=this.furnaceBurnTime>0){
 			flag1=true;
-			AlloyFurnace.updateBlockState(this.furnaceBurnTime>0, this.worldObj, this.xCoord,this.yCoord , this.zCoord);
+			//TODO multiblock
+			AlcoholStillController.updateBlockState(this.furnaceBurnTime>0, this.worldObj, this.xCoord,this.yCoord , this.zCoord);
 		}
 		
 		if(flag1){
@@ -364,34 +375,27 @@ public class TileEntityAlcoholStillController extends TileEntity implements ISid
     
 	public void smeltItem(){
 			
-			ArrayList temp=new ArrayList();
-			boolean vuoto=true;
-			for(int i=0;i<9;i++){
-				if(stillItemStacks[i]!=null)
-				{
-					vuoto=false;
-					temp.add(stillItemStacks[i]);
-				}
-			}
-			
 			if(this.canSmelt()){
-				ItemStack itemstack=AlloyFurnaceRecipes.SMELTING_BASE.getSmeltingResult(temp);
-				
-				if(this.stillItemStacks[10]==null){
-					this.stillItemStacks[10]=itemstack.copy();
-				}else if(this.stillItemStacks[10].getItem()==itemstack.getItem()){
-					this.stillItemStacks[10].stackSize+=itemstack.stackSize;
+				ItemStack base=stillItemStacks[0];
+				FluidStack result=null;
+				if(base.getItem()==ItemsHandler.biomass)
+					result=new FluidStack(BlockHandler.alcohol, 200);
+				else
+				{
+					//TODO enriched wather
 				}
 				
-				for(int i=0;i<9;i++){
-					if(this.stillItemStacks[i]!=null)
+				if(resultTank.getFluid().getFluid()==result.getFluid()){
+					if(resultTank.getCapacity()-resultTank.getFluidAmount()>=result.amount)
 					{
-						--this.stillItemStacks[i].stackSize;
-						
-						if(this.stillItemStacks[i].stackSize <= 0){
-							this.stillItemStacks[i] = null;
-						}
+						resultTank.fill(result, true);
 					}
+				}
+				
+				--this.stillItemStacks[3].stackSize;
+				
+				if(this.stillItemStacks[3].stackSize <= 0){
+					this.stillItemStacks[3] = null;
 				}
 				
 			}
@@ -401,15 +405,10 @@ public class TileEntityAlcoholStillController extends TileEntity implements ISid
 		if(itemstack==null){
 			return 0;
 		}else{
-			Item item=itemstack.getItem();//se non va l'altro import
+			Item item=itemstack.getItem();
 			
 			if(item instanceof ItemBlock && Block.getBlockFromItem(item) !=Blocks.air){
 				Block block=Block.getBlockFromItem(item);
-				/*
-				if(block== BlockHandler.copperOre){ //da cambiare, solo per test
-					return 200;
-				}*/
-				
 				if(block.getMaterial() == Material.wood){
 					return 300;
 				}
@@ -424,12 +423,9 @@ public class TileEntityAlcoholStillController extends TileEntity implements ISid
 		}
 	}
 	
-	public boolean isItemFuel(Item item){
-		return true;//TODO sistemare
+	public boolean isItemFuel(ItemStack itemstack){
+		return getItemBurnTime(itemstack)>0;
 	}
-	
-	public int getItemBurnTime(Item item){
-		return 0;
-	}
+
     
 }

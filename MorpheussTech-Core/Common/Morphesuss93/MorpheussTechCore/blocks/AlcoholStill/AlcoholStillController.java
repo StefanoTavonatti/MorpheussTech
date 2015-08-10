@@ -20,4 +20,9 @@ public class AlcoholStillController extends BlockContainer{
 		return new TileEntityAlcoholStillController(true);
 	}
 
+	public static void updateBlockState(boolean active, World worldObj, int xCoord,int yCoord, int zCoord) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
